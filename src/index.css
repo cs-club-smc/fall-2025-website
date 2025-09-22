@@ -22,9 +22,19 @@ body {
   text-align: center;
 }
 
+.img-container {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  height: 18rem;
+  width: 64rem; /* adjust as needed */
+  position: relative;
+  width: 100%;
+}
+
 img {
   height: 24rem;
-  clip-path: inset(4rem, 1rem, 1rem, 4rem); /* Crops 20% from the top */
+  clip-path: inset(100px 20px 120px 20px); /* top right bottom left */
 }
 
 body {
