@@ -8,6 +8,7 @@ function App() {
       </div>
       <h1>
         Computer Science Club
+        Hello World!
       </h1>
       <p>Coming soon!</p>
     </>
