@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Members from "./pages/Members";
 import NotFound from "./pages/NotFound";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
