@@ -6,26 +6,26 @@ function Sidebar() {
         <>
         <NavLink to="/"
         end>
-            <h1>Home</h1>
+            <p>Home</p>
         </NavLink>
         
         <NavLink to="/Announcements"
         end>
-            <h1>Announcements</h1>
+            <p>Announcements</p>
         </NavLink>
 
         <NavLink to="/Projects"
         end>
-            <h1>Projects</h1>
+            <p>Projects</p>
         </NavLink>
         
         <NavLink to="/Members"
         end>
-            <h1>Members</h1>
+            <p>Members</p>
         </NavLink>
         <NavLink to="/about"
         end>
-            <h1>About</h1>
+            <p>About</p>
         </NavLink>
         </>
     );
