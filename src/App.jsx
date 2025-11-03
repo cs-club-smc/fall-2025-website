@@ -4,19 +4,27 @@ import About from "./pages/About";
 import Members from "./pages/Members";
 import NotFound from "./pages/NotFound";
 import Sidebar from "./components/Sidebar";
+import Background from './assets/Background.png';
+
 
 function App() {
   return (
     <>
-      <Router>
-        <Sidebar />
-        <Routes>
-          <Route element={<Home />} path="/"/>
-          <Route element={<About />} path="/about" />
-          <Route element={<Members />} path="/members" />
-          <Route element={<NotFound />} path="*" />
-        </Routes>
-      </Router>
+      <Sidebar />
+      <div
+        className="min-h-screen bg-fixed bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${Background})` }}
+      >
+
+        <Router>
+          <Routes>
+            <Route element={<Home />} path="/"/>
+            <Route element={<About />} path="/about" />
+            <Route element={<Members />} path="/members" />
+            <Route element={<NotFound />} path="*" />
+          </Routes>
+        </Router>
+      </div>
     </>
   )
 }
