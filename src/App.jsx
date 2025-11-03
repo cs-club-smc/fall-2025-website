@@ -3,12 +3,14 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Members from "./pages/Members";
 import NotFound from "./pages/NotFound";
+import Sidebar from "./components/Sidebar";
 import Background from './assets/Background.png';
 
 
 function App() {
   return (
     <>
+      <Sidebar />
       <div
         className="min-h-screen bg-fixed bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${Background})` }}
