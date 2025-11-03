@@ -63,8 +63,8 @@ p {
 .sidebar {
   text-align: left;
   position: fixed;
-  top: 250px;
-  left: 0;
+  top: 300px;
+  left: 90px;
   width: 200px;
   height: 100%;
   padding: 20px;
