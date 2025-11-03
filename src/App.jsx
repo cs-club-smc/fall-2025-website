@@ -3,14 +3,14 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Members from "./pages/Members";
 import NotFound from "./pages/NotFound";
-import background from './assets/background.png';
+import Background from './assets/Background.png';
 
 function App() {
   return (
     <>
       <div
         className="min-h-screen bg-fixed bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${background})` }}
+        style={{ backgroundImage: `url(${Background})` }}
       >
 
         <Router>
