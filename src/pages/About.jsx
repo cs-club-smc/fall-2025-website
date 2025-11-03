@@ -1,4 +1,7 @@
 import background from '../assets/About/background.png'
+import meeting from '../assets/About/meeting.png'
+import logo from '../assets/About/logo.jpg'
+
 
 function About() {
     return(
@@ -28,6 +31,29 @@ function About() {
 
         <p>Affiliated Organizations</p>
         <p>"Lorem ipsum dolor </p> 
+
+        <div>
+            <img 
+            src={meeting} 
+            alt = "CS Club meeting"
+            style = {{
+                width: '300px',
+                height: '500px',
+                borderRadius:'62px',
+            }} 
+            />
+
+            <img 
+            src={logo} 
+            alt = "CS Club logo"
+            style = {{
+                width: '300px',
+                height: '500px',
+                borderRadius:'62px',
+            }} 
+            />
+        </div>
+
 
        </main>
     )
