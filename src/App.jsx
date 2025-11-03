@@ -9,6 +9,7 @@ function App() {
   return (
     <>
       <Router>
+        <Sidebar />
         <Routes>
           <Route element={<Home />} path="/"/>
           <Route element={<About />} path="/about" />
