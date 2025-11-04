@@ -10,13 +10,14 @@ import Background from './assets/Background.png';
 function App() {
   return (
     <>
-      <Sidebar />
+      
       <div
         className="min-h-screen bg-fixed bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${Background})` }}
       >
 
         <Router>
+          <Sidebar />
           <Routes>
             <Route element={<Home />} path="/"/>
             <Route element={<About />} path="/about" />
