@@ -9,7 +9,7 @@ function Announcements() {
 
     return(
         <>
-            <h1 className="text-8xl">ANNOUNCMENTS</h1>
+            <h1 className="text-8xl">ANNOUNCEMENTS</h1>
             {announcementsData.map((value, index) => {
                 return(
                     <div className="flex justify-center items-center">

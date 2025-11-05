@@ -22,6 +22,8 @@ body {
   display: flex;
   place-items: center;
   text-align: center;
+  background: oklch(20.5% 0 0);
+  min-height: 100vh;
 }
 
 .img-container {
@@ -29,19 +31,8 @@ body {
   display: flex;
   justify-content: center;
   height: 18rem;
-  width: 64rem; /* adjust as needed */
-  position: relative;
   width: 100%;
-}
-
-img {
-  height: 24rem;
-  clip-path: inset(100px 20px 120px 20px); /* top right bottom left */
-}
-
-body {
-  background: oklch(20.5% 0 0);
-  height: 100vh;
+  position: relative;
 }
 
 #root {
@@ -58,28 +49,31 @@ p {
 .sidebar {
   text-align: left;
   position: fixed;
-  top: 300px;
+  top: 50%;
   left: 90px;
+  transform: translateY(-50%);
   width: 200px;
-  height: 100%;
   padding: 20px;
-  cursor: pointer;
-  float: left;
   font-family: 'Roboto Mono', monospace;
   font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
 }
 
-.sidebar .sidebarComponent.active {
+.sidebar .sidebarComponent {
   display: block;
   padding: 10px;
-  margin-bottom: 10px;
-  color: white;
+  color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
   border-radius: 4px;
-  
+  transition: all 0.3s ease;
+  font-size: 1.125rem;
 }
 
-.sidebar p:hover{
+.sidebar .sidebarComponent:hover,
+.sidebar .sidebarComponent.active {
   color: #66C48A;
-  text-shadow:0 0 5px white, 0 0 10px white, 0 0 20px white
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
 }
