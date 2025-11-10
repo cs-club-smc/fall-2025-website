@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Members from "./pages/Members";
+import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
@@ -11,8 +11,18 @@ function App() {
   return (
     <div className="min-h-screen">
       <div
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
-        style={{ backgroundImage: `url(${Background})` }}
+        className="fixed -z-10"
+        style={{
+          backgroundImage: `url(${Background})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: '-100vh',
+          height: 'calc(100% + 100vh)'
+        }}
       />
       <Router>
         <Navbar />
@@ -20,7 +30,7 @@ function App() {
         <Routes>
           <Route element={<Home />} path="/"/>
           <Route element={<About />} path="/about" />
-          <Route element={<Members />} path="/members" />
+          <Route element={<Team />} path="/team" />
           <Route element={<NotFound />} path="*" />
         </Routes>
       </Router>

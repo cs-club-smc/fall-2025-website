@@ -1,41 +1,58 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/Navbar/cs-club-logo.png";
+import JoinNowButton from "./JoinNowButton";
 
 function Navbar() {
+    const location = useLocation();
+
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/10">
             <div className="w-full px-12 py-6 flex items-center">
                 {/* Logo - Left side */}
-                <div className="flex-none">
+                <div className="flex-1">
                     <Link to="/" className="flex items-center">
                         <img src={logo} alt="CS Club Logo" className="h-20 w-auto" />
                     </Link>
                 </div>
 
                 {/* Navigation Links - Centered */}
-                <div className="flex-1 flex justify-center gap-12 text-2xl" style={{ fontFamily: "'Russo One', sans-serif" }}>
+                <div className="flex-none flex justify-center gap-12 text-2xl" style={{ fontFamily: "'Russo One', sans-serif" }}>
                     <Link
                         to="/"
-                        className="text-teal-400 hover:text-teal-300 transition-colors"
+                        className={`transition-colors ${
+                            location.pathname === '/'
+                                ? 'text-teal-400'
+                                : 'text-white hover:text-teal-400'
+                        }`}
                     >
                         Home
                     </Link>
                     <Link
                         to="/about"
-                        className="text-white hover:text-teal-400 transition-colors"
+                        className={`transition-colors ${
+                            location.pathname === '/about'
+                                ? 'text-teal-400'
+                                : 'text-white hover:text-teal-400'
+                        }`}
                     >
                         About
                     </Link>
                     <Link
-                        to="/members"
-                        className="text-white hover:text-teal-400 transition-colors"
+                        to="/team"
+                        className={`transition-colors ${
+                            location.pathname === '/team'
+                                ? 'text-teal-400'
+                                : 'text-white hover:text-teal-400'
+                        }`}
                     >
-                        Members
+                        Our Team
                     </Link>
                 </div>
 
-                {/* Right side - placeholder for Join Now Button */}
-                <div className="flex-none w-20"></div>
+                {/* Right side - Join Now Button */}
+                <div className="flex-1 flex justify-end">
+                    <JoinNowButton />
+                </div>
             </div>
         </nav>
     );
