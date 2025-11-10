@@ -1,0 +1,172 @@
+/**
+ * Design Tokens - CS Club Website
+ * Based on Figma designs (1920x1080)
+ * All measurements and colors extracted from Figma specifications
+ */
+
+:root {
+  /* ===== COLOR PALETTE ===== */
+
+  /* Primary Brand Colors */
+  --color-teal-primary: #0fb588;
+  --color-teal-light: #66c48a;
+  --color-teal-dark: #014b51;
+
+  /* Discord Brand */
+  --color-discord-blue: #5865f2;
+
+  /* Announcement Card Colors */
+  --color-announcement-blue-fg: #0088fe;
+  --color-announcement-blue-bg: #4273aa;
+  --color-announcement-green-fg: #3ddc84;
+  --color-announcement-green-bg: #014b51;
+  --color-announcement-white-fg: #f4f4f4;
+  --color-announcement-white-bg: #b3b3b3;
+
+  /* Neutral Colors */
+  --color-slate-100: #f1f5f9;
+  --color-black: #000000;
+  --color-black-75: rgba(0, 0, 0, 0.75);
+  --color-black-25: rgba(0, 0, 0, 0.25);
+  --color-white: #ffffff;
+  --color-white-80: rgba(255, 255, 255, 0.8);
+  --color-white-50: rgba(255, 255, 255, 0.5);
+
+  /* Background */
+  --color-bg-dark: #060612;
+
+  /* ===== TYPOGRAPHY ===== */
+
+  /* Font Families */
+  --font-heading: 'Russo One', sans-serif;
+  --font-body: 'Roboto Mono', monospace;
+
+  /* Font Sizes */
+  --text-hero: 200px;
+  --text-page-title-xl: 128px;
+  --text-page-title: 96px;
+  --text-nav: 40px;
+  --text-button: 32px;
+  --text-section-title: 36px;
+  --text-body-xl: 24px;
+  --text-body-large: 20px;
+  --text-body: 16px;
+  --text-small: 14px;
+  --text-tiny: 10px;
+
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ===== SPACING ===== */
+
+  /* Border Radius */
+  --radius-small: 21px;
+  --radius-medium: 26px;
+  --radius-large: 87px;
+  --radius-xlarge: 104px;
+  --radius-xxlarge: 117px;
+
+  /* Layout Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+
+  /* ===== SHADOWS ===== */
+
+  /* Text Shadows */
+  --shadow-text: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  --shadow-text-glow: 0px 0px 14.1px #ffffff;
+  --shadow-glow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+
+  /* Box Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* ===== Z-INDEX LAYERS ===== */
+
+  --z-background: -10;
+  --z-base: 0;
+  --z-sidebar: 10;
+  --z-navbar: 50;
+  --z-modal: 100;
+  --z-tooltip: 200;
+
+  /* ===== TRANSITIONS ===== */
+
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* ===== BREAKPOINTS (for reference in media queries) ===== */
+
+  /* Mobile: < 768px */
+  /* Tablet: 768px - 1024px */
+  /* Desktop: 1024px - 1920px */
+  /* Large Desktop: > 1920px */
+
+  /* ===== COMPONENT-SPECIFIC MEASUREMENTS ===== */
+
+  /* Navbar */
+  --navbar-height: 96px;
+  --navbar-padding-x: 48px;
+  --navbar-padding-y: 24px;
+  --navbar-logo-height: 80px;
+
+  /* Sidebar */
+  --sidebar-width: 200px;
+  --sidebar-left: 90px;
+  --sidebar-gap: 20px;
+
+  /* Benefits Section */
+  --benefit-circle-size: 50px;
+  --benefit-icon-size: 24px;
+  --benefit-spacing: 361px;
+
+  /* Announcement Cards */
+  --card-width: 761px;
+  --card-height: 149px;
+  --card-border-radius: 26px;
+  --card-spacing: 214px;
+
+  /* Join Now Button */
+  --join-btn-width: 275.908px;
+  --join-btn-height: 72.282px;
+  --join-btn-radius: 104px;
+  --join-btn-icon-size: 50px;
+
+  /* Down Arrow */
+  --arrow-width: 114px;
+  --arrow-height: 33px;
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.text-shadow-default {
+  text-shadow: var(--shadow-text);
+}
+
+.text-glow {
+  text-shadow: var(--shadow-text-glow);
+}
+
+.text-glow-strong {
+  text-shadow: var(--shadow-glow);
+}
+
+.transition-default {
+  transition: all var(--transition-base);
+}

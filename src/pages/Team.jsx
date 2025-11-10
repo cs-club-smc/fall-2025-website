@@ -1,0 +1,240 @@
+import presidentImg from '../assets/team/image-6.png';
+import vpImg from '../assets/team/image-7.png';
+import secretaryImg from '../assets/team/image-9.png';
+import line4 from '../assets/team/line-4.svg';
+import line3 from '../assets/team/line-3.svg';
+import maskImg from '../assets/team/image-8.svg';
+
+/**
+ * Team Page - Modern Responsive Implementation
+ * CSS Grid layout with fluid typography and natural scrolling
+ */
+function Team() {
+  return (
+    <div className="team-page">
+      {/* Title */}
+      <h1 className="page-title">OUR TEAM</h1>
+
+      {/* Title Underline */}
+      <div className="title-underline">
+        <img src={line4} alt="" />
+      </div>
+
+      {/* Cards Grid Container */}
+      <div className="cards-grid">
+        {/* Card 1 - President */}
+        <div className="card">
+          <div className="card-bg" />
+          <div className="photo-mask">
+            <img src={presidentImg} alt="President" className="officer-photo" />
+          </div>
+          <p className="role-title">President</p>
+        </div>
+
+        {/* Card 2 - Vice President */}
+        <div className="card">
+          <div className="card-bg" />
+          <div className="photo-mask">
+            <img src={vpImg} alt="Vice President" className="officer-photo" />
+          </div>
+          <p className="role-title">Vice President</p>
+        </div>
+
+        {/* Card 3 - Secretary */}
+        <div className="card">
+          <div className="card-bg" />
+          <div className="photo-mask">
+            <img src={secretaryImg} alt="Secretary" className="officer-photo" />
+          </div>
+          <p className="role-title">Secretary</p>
+        </div>
+
+        {/* Placeholder Cards */}
+        <div className="card">
+          <div className="card-bg" />
+          <div className="photo-mask placeholder-photo" />
+          <p className="role-title">ICC Publicity</p>
+        </div>
+
+        <div className="card">
+          <div className="card-bg" />
+          <div className="photo-mask placeholder-photo" />
+          <p className="role-title">Treasurer</p>
+        </div>
+
+        <div className="card">
+          <div className="card-bg" />
+          <div className="photo-mask placeholder-photo" />
+          <p className="role-title">Publicity Officer</p>
+        </div>
+      </div>
+
+      {/* Bottom Line */}
+      <div className="bottom-line">
+        <img src={line3} alt="" />
+      </div>
+
+      <style jsx>{`
+        .team-page {
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          padding: clamp(2rem, 7.5vh, 9rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 5vh, 5rem);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .page-title {
+          width: fit-content;
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(3rem, 5.2vw, 6.25rem);
+          font-weight: 400;
+          line-height: normal;
+          color: #F1F5F9;
+          margin: 0 0 clamp(1rem, 2vh, 2rem) 0;
+          text-align: center;
+        }
+
+        .title-underline {
+          width: clamp(300px, 33.6vw, 646px);
+          height: 3px;
+          margin-bottom: clamp(2rem, 4vh, 4rem);
+        }
+
+        .title-underline img {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+
+        /* Cards Grid - Modern Responsive Layout */
+        .cards-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 367px));
+          gap: clamp(1.5rem, 3vw, 3rem);
+          justify-content: center;
+          width: 100%;
+          max-width: 1600px;
+          margin-bottom: clamp(2rem, 4vh, 4rem);
+        }
+
+        /* Force 3 columns on large screens */
+        @media (min-width: 1200px) {
+          .cards-grid {
+            grid-template-columns: repeat(3, minmax(320px, 367px));
+          }
+        }
+
+        /* Officer Cards */
+        .card {
+          position: relative;
+          width: 100%;
+          max-width: 367px;
+          justify-self: center;
+        }
+
+        .card-bg {
+          width: 100%;
+          aspect-ratio: 367 / 533;
+          background: #F1F5F9;
+        }
+
+        .photo-mask {
+          position: absolute;
+          left: 4.6%;
+          top: 5.25%;
+          width: 90.7%;
+          height: 76.4%;
+          overflow: hidden;
+          -webkit-mask-image: url(${maskImg});
+          mask-image: url(${maskImg});
+          -webkit-mask-size: contain;
+          mask-size: contain;
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+          mask-position: center;
+        }
+
+        .officer-photo {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .placeholder-photo {
+          background: #D9D9D9;
+        }
+
+        .role-title {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 5.25%;
+          width: 78.7%;
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+          font-weight: 400;
+          line-height: normal;
+          text-align: center;
+          color: #000000;
+          margin: 0;
+        }
+
+        /* Bottom Line */
+        .bottom-line {
+          width: clamp(300px, 91.4vw, 1754px);
+          height: 5px;
+          margin-top: auto;
+        }
+
+        .bottom-line img {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+
+        /* Tablet - 2 Column Layout */
+        @media (max-width: 1024px) {
+          .cards-grid {
+            grid-template-columns: repeat(2, minmax(280px, 367px));
+            gap: clamp(1.25rem, 2.5vw, 2.5rem);
+          }
+
+          .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+          }
+        }
+
+        /* Mobile - Single Column Layout */
+        @media (max-width: 768px) {
+          .team-page {
+            padding: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 4vw, 2rem);
+          }
+
+          .cards-grid {
+            grid-template-columns: 1fr;
+            gap: clamp(1rem, 2vh, 2rem);
+            max-width: 400px;
+          }
+
+          .page-title {
+            font-size: clamp(2rem, 7vw, 3rem);
+            margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
+          }
+
+          .title-underline {
+            margin-bottom: clamp(1.5rem, 3vh, 3rem);
+          }
+
+          .role-title {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+export default Team;

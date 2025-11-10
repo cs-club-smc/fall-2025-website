@@ -1,10 +1,15 @@
 @import "tailwindcss";
-@import '@fontsource/russo-one'; 
+@import '@fontsource/russo-one';
 @import '@fontsource/roboto-mono';
+@import './styles/tokens.css';
 
 * {
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -22,7 +27,7 @@ body {
   display: flex;
   place-items: center;
   text-align: center;
-  background: oklch(20.5% 0 0);
+  background: rgba(0, 0, 0, 0.75);
   min-height: 100vh;
 }
 
