@@ -72,7 +72,7 @@ function Home() {
       {/* Footer - At bottom of page content, not animated */}
       <footer className="home-footer">
         <p className="footer-meetings">Weekly Meetings on Thursday @ 11:15 AM - 12:30 PM</p>
-        <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405, HSS 205</p>
+        <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405, Drescher Hall 305</p>
       </footer>
 
       <style jsx>{`
