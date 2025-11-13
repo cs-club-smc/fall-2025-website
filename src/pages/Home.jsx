@@ -97,17 +97,6 @@ function Home() {
           z-index: 5;
         }
 
-        .home-footer::after {
-          content: '';
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          height: 100vh;
-          background: rgba(0, 0, 0, 0.75);
-          z-index: -1;
-        }
-
         .footer-meetings,
         .footer-location {
           font-family: 'Roboto Mono', monospace;

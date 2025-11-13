@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 
 :root {
@@ -29,6 +30,7 @@ body {
   text-align: center;
   background: rgba(0, 0, 0, 0.75);
   min-height: 100vh;
+  overscroll-behavior: none;
 }
 
 .img-container {

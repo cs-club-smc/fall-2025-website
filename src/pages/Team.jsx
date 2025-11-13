@@ -1,7 +1,6 @@
 import presidentImg from '../assets/team/image-6.png';
 import vpImg from '../assets/team/image-7.png';
 import secretaryImg from '../assets/team/image-9.png';
-import line4 from '../assets/team/line-4.svg';
 import line3 from '../assets/team/line-3.svg';
 import maskImg from '../assets/team/image-8.svg';
 
@@ -17,7 +16,7 @@ function Team() {
 
       {/* Title Underline */}
       <div className="title-underline">
-        <img src={line4} alt="" />
+        <img src={line3} alt="" />
       </div>
 
       {/* Cards Grid Container */}
