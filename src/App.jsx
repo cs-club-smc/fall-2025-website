@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Members from "./pages/Members";
 import NotFound from "./pages/NotFound";
-import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import Background from './assets/Background.png';
 
@@ -16,7 +15,6 @@ function App() {
       />
       <Router>
         <Navbar />
-        <Sidebar />
         <Routes>
           <Route element={<Home />} path="/"/>
           <Route element={<About />} path="/about" />
