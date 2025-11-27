@@ -19,15 +19,15 @@ function AnimatedBackground() {
 
     const initParticles = () => {
       particles = [];
-      const count = Math.floor((canvas.width * canvas.height) / 60000);
+      const count = Math.floor((canvas.width * canvas.height) / 120000);
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 2.5 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.2,
-          speedY: (Math.random() - 0.5) * 0.2,
-          opacity: Math.random() * 0.7 + 0.3,
+          size: Math.random() * 30 + 20,
+          speedX: (Math.random() - 0.5) * 0.15,
+          speedY: (Math.random() - 0.5) * 0.15,
+          opacity: Math.random() * 0.15 + 0.05,
           pulse: Math.random() * Math.PI * 2,
           color: Math.random() > 0.5 ? '#66C48A' : '#4ECDC4'
         });
@@ -141,30 +141,26 @@ function AnimatedBackground() {
         // Update position
         p.x += p.speedX;
         p.y += p.speedY;
-        p.pulse += 0.02;
+        p.pulse += 0.008;
 
         // Wrap around edges
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+        if (p.x < -p.size) p.x = canvas.width + p.size;
+        if (p.x > canvas.width + p.size) p.x = -p.size;
+        if (p.y < -p.size) p.y = canvas.height + p.size;
+        if (p.y > canvas.height + p.size) p.y = -p.size;
 
         // Pulsing glow
-        const glowSize = p.size * (2 + Math.sin(p.pulse) * 0.5);
-        const opacity = p.opacity * (0.7 + Math.sin(p.pulse) * 0.3);
+        const glowSize = p.size * (1 + Math.sin(p.pulse) * 0.2);
+        const opacity = p.opacity * (0.8 + Math.sin(p.pulse) * 0.2);
 
-        // Outer glow
-        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowSize * 4);
+        // Soft gradient orb only - no hard core
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowSize);
         gradient.addColorStop(0, p.color.replace(')', `, ${opacity})`).replace('rgb', 'rgba'));
-        gradient.addColorStop(0.5, p.color.replace(')', `, ${opacity * 0.3})`).replace('rgb', 'rgba'));
+        gradient.addColorStop(0.4, p.color.replace(')', `, ${opacity * 0.5})`).replace('rgb', 'rgba'));
         gradient.addColorStop(1, 'transparent');
         ctx.fillStyle = gradient;
-        ctx.fillRect(p.x - glowSize * 4, p.y - glowSize * 4, glowSize * 8, glowSize * 8);
-
-        // Core
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.arc(p.x, p.y, glowSize, 0, Math.PI * 2);
         ctx.fill();
       });
     };
@@ -205,7 +201,6 @@ function AnimatedBackground() {
       drawBackground(time);
       drawOrbs(time);
       drawGrid(time);
-      drawConnections();
       drawParticles(time);
       drawScanline(time);
       animationId = requestAnimationFrame(animate);
