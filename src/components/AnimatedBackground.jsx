@@ -201,7 +201,6 @@ function AnimatedBackground() {
       drawBackground(time);
       drawOrbs(time);
       drawGrid(time);
-      drawScanline(time);
       animationId = requestAnimationFrame(animate);
     };
 
