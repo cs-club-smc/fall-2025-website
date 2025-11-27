@@ -51,6 +51,7 @@ function Home() {
 
       {/* Announcements Section - Dramatic entrance */}
       <motion.div
+        id="announcements"
         className="min-h-screen mb-32 perspective-1000"
         initial="hidden"
         whileInView="visible"

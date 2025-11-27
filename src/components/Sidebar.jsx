@@ -13,14 +13,15 @@ function Sidebar() {
         }
 
         const handleScroll = () => {
-            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            const scrollPosition = window.scrollY;
+            const offset = 200; // Trigger section change when scrolled 200px past section start
 
             const announcementsSection = document.getElementById("announcements");
             const projectsSection = document.getElementById("projects");
 
-            if (projectsSection && scrollPosition >= projectsSection.offsetTop) {
+            if (projectsSection && scrollPosition >= projectsSection.offsetTop - offset) {
                 setActiveSection("projects");
-            } else if (announcementsSection && scrollPosition >= announcementsSection.offsetTop) {
+            } else if (announcementsSection && scrollPosition >= announcementsSection.offsetTop - offset) {
                 setActiveSection("announcements");
             } else {
                 setActiveSection("home");
