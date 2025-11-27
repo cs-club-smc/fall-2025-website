@@ -4,7 +4,6 @@ import About from "./pages/About";
 import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
 import ProjectsPage from "./components/Home/ProjectsPage";
-import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import Background from './assets/Background.png';
 
@@ -27,7 +26,6 @@ function App() {
       />
       <Router>
         <Navbar />
-        <Sidebar />
         <Routes>
           <Route element={<Home />} path="/"/>
           <Route element={<About />} path="/about" />

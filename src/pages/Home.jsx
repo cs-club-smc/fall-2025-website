@@ -3,6 +3,7 @@ import { useRef } from "react";
 import Landing from "../components/Home/Landing";
 import Announcements from "../components/Home/Announcements";
 import Projects from "../components/Home/Projects";
+import Sidebar from "../components/Sidebar";
 
 function Home() {
   const ref = useRef(null);
@@ -37,7 +38,9 @@ function Home() {
   };
 
   return (
-    <div ref={ref} className="home-container">
+    <>
+      <Sidebar />
+      <div ref={ref} className="home-container">
       {/* Landing Section - Parallax fade out on scroll */}
       <motion.div
         className="min-h-screen mb-32"
@@ -128,7 +131,8 @@ function Home() {
           }
         }
       `}</style>
-    </div>
+      </div>
+    </>
   );
 }
 

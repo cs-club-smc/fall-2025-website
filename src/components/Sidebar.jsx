@@ -42,7 +42,7 @@ function Sidebar() {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
             >
-                Home
+                Landing
             </a>
 
             <a
