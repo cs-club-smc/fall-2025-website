@@ -16,9 +16,16 @@ function Home() {
   const announcementsRef = useRef(null);
   const transition2Ref = useRef(null);
   const projectsRef = useRef(null);
-  const footerRef = useRef(null);
 
   useGSAP(() => {
+    // Preserve scroll position on horizontal resize to prevent jumps
+    let scrollY = 0;
+    const saveScroll = () => { scrollY = window.scrollY; };
+    const restoreScroll = () => { window.scrollTo(0, scrollY); };
+
+    ScrollTrigger.addEventListener("refreshInit", saveScroll);
+    ScrollTrigger.addEventListener("refresh", restoreScroll);
+
     // Landing section - fade and scale as it scrolls away
     gsap.to(landingRef.current, {
       scrollTrigger: {
@@ -97,18 +104,10 @@ function Home() {
       ease: "none",
     });
 
-    // Footer reveal
-    gsap.from(footerRef.current, {
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: "top bottom",
-        end: "top 85%",
-        scrub: 0.5,
-      },
-      y: 30,
-      opacity: 0,
-    });
-
+    return () => {
+      ScrollTrigger.removeEventListener("refreshInit", saveScroll);
+      ScrollTrigger.removeEventListener("refresh", restoreScroll);
+    };
   }, { scope: containerRef });
 
   return (
@@ -153,7 +152,7 @@ function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="home-footer" ref={footerRef}>
+        <footer className="home-footer">
           <p className="footer-meetings">Weekly Meetings on Thursday @ 11:15 AM - 12:30 PM</p>
           <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405, Drescher Hall 305</p>
         </footer>
@@ -253,6 +252,14 @@ function Home() {
           margin: 0;
         }
 
+        @media (max-width: 950px) {
+          .home-footer {
+            flex-direction: column;
+            text-align: center;
+            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
+          }
+        }
+
         @media (max-width: 768px) {
           .transition-section {
             height: 30vh;
@@ -266,12 +273,6 @@ function Home() {
           .transition-line {
             width: 80px;
             max-width: none;
-          }
-
-          .home-footer {
-            flex-direction: column;
-            text-align: center;
-            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
           }
         }
       `}</style>

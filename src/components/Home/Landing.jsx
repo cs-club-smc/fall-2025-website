@@ -90,12 +90,6 @@ function Landing() {
       {/* Grain overlay */}
       <div className="grain" />
 
-      {/* Gradient mesh background */}
-      <div className="gradient-bg">
-        <div className="gradient-blob blob-1" />
-        <div className="gradient-blob blob-2" />
-      </div>
-
       {/* Main Content */}
       <motion.div
         className="content-wrapper"
@@ -109,10 +103,12 @@ function Landing() {
           transition={{ duration: 0.3 }}
         >
           <span className="title-line" data-text="SMC">
+            <span className="title-placeholder" aria-hidden="true">SMC</span>
             <span className="title-text">{smcText}</span>
             <span className="title-outline" aria-hidden="true">SMC</span>
           </span>
           <span className="title-line" data-text="CS CLUB">
+            <span className="title-placeholder" aria-hidden="true">CS CLUB</span>
             <span className="title-text">{csText}</span>
             <span className="title-outline" aria-hidden="true">CS CLUB</span>
           </span>
@@ -182,48 +178,6 @@ function Landing() {
           75% { transform: translate(-2%, 2%); }
         }
 
-        /* Gradient background */
-        .gradient-bg {
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-        }
-
-        .gradient-blob {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(120px);
-          opacity: 0.4;
-          animation: blobFloat 20s ease-in-out infinite;
-        }
-
-        .blob-1 {
-          width: 50vw;
-          height: 50vw;
-          max-width: 600px;
-          max-height: 600px;
-          top: -10%;
-          right: -10%;
-          background: rgba(15, 181, 136, 0.3);
-        }
-
-        .blob-2 {
-          width: 40vw;
-          height: 40vw;
-          max-width: 500px;
-          max-height: 500px;
-          bottom: -10%;
-          left: -10%;
-          background: rgba(0, 136, 254, 0.25);
-          animation-delay: -10s;
-        }
-
-        @keyframes blobFloat {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(3%, 3%) scale(1.05); }
-          66% { transform: translate(-2%, 2%) scale(0.95); }
-        }
-
         /* Content */
         .content-wrapper {
           position: relative;
@@ -257,12 +211,18 @@ function Landing() {
           display: block;
         }
 
+        .title-placeholder {
+          visibility: hidden;
+          display: block;
+        }
+
         .title-text {
-          position: relative;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
           z-index: 2;
           color: #F1F5F9;
-          display: inline-block;
-          min-width: 100%;
           text-align: center;
         }
 

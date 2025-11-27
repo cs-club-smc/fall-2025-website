@@ -67,11 +67,18 @@ function About() {
         </div>
       </div>
 
+      {/* Footer */}
+      <footer className="page-footer">
+        <p className="footer-meetings">Weekly Meetings on Thursday @ 11:15 AM - 12:30 PM</p>
+        <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405, Drescher Hall 305</p>
+      </footer>
+
       <style jsx>{`
         .about-page {
           min-height: 100vh;
           background: transparent;
-          padding: clamp(100px, 8vw, 140px) clamp(24px, 5vw, 80px) clamp(40px, 5vw, 80px);
+          padding: clamp(100px, 8vw, 140px) clamp(24px, 5vw, 80px) 0;
+          overflow-x: hidden;
         }
 
         .about-content {
@@ -95,7 +102,7 @@ function About() {
           line-height: 100%;
           color: #F1F5F9;
           margin: 0 0 clamp(32px, 4vw, 70px) 0;
-          text-align: left;
+          text-align: center;
         }
 
         .about-text {
@@ -223,7 +230,7 @@ function About() {
         /* Mobile */
         @media (max-width: 640px) {
           .about-page {
-            padding: 100px 20px 40px;
+            padding: 100px 20px 0;
           }
 
           .about-title {
@@ -237,6 +244,46 @@ function About() {
 
           .about-text section h2 {
             font-size: 18px;
+          }
+        }
+
+        /* Footer */
+        .page-footer {
+          position: relative;
+          width: 100vw;
+          margin-left: calc(-1 * clamp(24px, 5vw, 80px));
+          background: rgba(0, 0, 0, 0.85);
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 8vw, 145px);
+          flex-wrap: wrap;
+          gap: clamp(0.5rem, 1vh, 1rem);
+          box-sizing: border-box;
+          margin-top: clamp(3rem, 5vh, 5rem);
+        }
+
+        .footer-meetings,
+        .footer-location {
+          font-family: 'Roboto Mono', monospace;
+          font-size: clamp(12px, 1.5vw, 24px);
+          font-weight: 300;
+          color: #F1F5F9;
+          margin: 0;
+        }
+
+        @media (max-width: 950px) {
+          .page-footer {
+            flex-direction: column;
+            text-align: center;
+            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .page-footer {
+            margin-left: -20px;
           }
         }
       `}</style>

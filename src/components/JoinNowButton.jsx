@@ -1,9 +1,9 @@
-import discordIcon from '../assets/icons/discord-white-icon.png';
+import { SiDiscord } from 'react-icons/si';
 
 /**
  * JoinNowButton Component
  * Discord button that links to the CS Club Discord server
- * Based on Figma design specifications
+ * Glassmorphism design to match site aesthetic
  */
 function JoinNowButton() {
   const DISCORD_INVITE_URL = "https://discord.gg/vWVBwsAqfJ";
@@ -17,11 +17,7 @@ function JoinNowButton() {
       aria-label="Join CS Club Discord Server"
     >
       {/* Discord Icon */}
-      <img
-        src={discordIcon}
-        alt="Discord"
-        className="discord-icon"
-      />
+      <SiDiscord className="discord-icon" />
 
       {/* Button Text */}
       <span className="button-text">Join Now</span>
@@ -31,38 +27,37 @@ function JoinNowButton() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 12px;
+          gap: 10px;
 
-          /* Exact dimensions from Figma */
-          width: var(--join-btn-width);
-          height: var(--join-btn-height);
+          /* Glassmorphism */
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
 
-          /* Discord brand blue */
-          background-color: var(--color-discord-blue);
+          /* Subtle border */
+          border: 1px solid rgba(255, 255, 255, 0.15);
 
           /* Rounded pill shape */
-          border-radius: var(--join-btn-radius);
-
-          /* Border */
-          border: 1px solid var(--color-black);
+          border-radius: 50px;
 
           /* Layout */
-          padding: 0 24px;
+          padding: 12px 24px;
 
           /* Remove link styling */
           text-decoration: none;
 
           /* Transition */
-          transition: var(--transition-base);
+          transition: all 0.3s ease;
 
           /* Cursor */
           cursor: pointer;
         }
 
         .join-now-button:hover {
-          background-color: #4752c4;
+          background: rgba(255, 255, 255, 0.12);
+          border-color: rgba(102, 196, 138, 0.4);
           transform: translateY(-2px);
-          box-shadow: 0 8px 16px rgba(88, 101, 242, 0.3);
+          box-shadow: 0 8px 24px rgba(102, 196, 138, 0.15);
         }
 
         .join-now-button:active {
@@ -70,51 +65,61 @@ function JoinNowButton() {
         }
 
         .discord-icon {
-          width: var(--join-btn-icon-size);
-          height: auto;
+          width: 22px;
+          height: 22px;
+          color: #F1F5F9;
           flex-shrink: 0;
+          transition: color 0.3s ease;
+        }
+
+        .join-now-button:hover .discord-icon {
+          color: #66C48A;
         }
 
         .button-text {
-          font-family: var(--font-heading);
-          font-size: var(--text-button);
-          color: var(--color-white);
-          font-weight: var(--weight-regular);
+          font-family: 'Russo One', sans-serif;
+          font-size: 18px;
+          color: #F1F5F9;
+          font-weight: 400;
           line-height: 1;
           white-space: nowrap;
+          transition: color 0.3s ease;
+        }
+
+        .join-now-button:hover .button-text {
+          color: #66C48A;
         }
 
         /* Responsive adjustments */
         @media (max-width: 1024px) {
           .join-now-button {
-            width: 220px;
-            height: 60px;
-            padding: 0 20px;
+            padding: 10px 20px;
+            gap: 8px;
           }
 
           .button-text {
-            font-size: 24px;
+            font-size: 16px;
           }
 
           .discord-icon {
-            width: 40px;
+            width: 20px;
+            height: 20px;
           }
         }
 
         @media (max-width: 768px) {
           .join-now-button {
-            width: 180px;
-            height: 50px;
-            padding: 0 16px;
-            gap: 8px;
+            padding: 8px 16px;
+            gap: 6px;
           }
 
           .button-text {
-            font-size: 20px;
+            font-size: 14px;
           }
 
           .discord-icon {
-            width: 32px;
+            width: 18px;
+            height: 18px;
           }
         }
       `}</style>

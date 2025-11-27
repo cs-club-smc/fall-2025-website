@@ -50,7 +50,7 @@ function Navbar() {
                 </div>
 
                 {/* Right side - Join Now Button */}
-                <div className="flex-1 flex justify-end">
+                <div className="flex-1 flex justify-end" style={{ marginRight: '24px' }}>
                     <JoinNowButton />
                 </div>
             </div>
