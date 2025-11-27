@@ -108,6 +108,29 @@ function Team() {
           }
         }
 
+        @keyframes borderCycle {
+          0% {
+            border-color: #66C48A;
+            box-shadow: 0 4px 25px rgba(102, 196, 138, 0.4);
+          }
+          25% {
+            border-color: #4ECDC4;
+            box-shadow: 0 4px 25px rgba(78, 205, 196, 0.4);
+          }
+          50% {
+            border-color: #45B7D1;
+            box-shadow: 0 4px 25px rgba(69, 183, 209, 0.4);
+          }
+          75% {
+            border-color: #96E6A1;
+            box-shadow: 0 4px 25px rgba(150, 230, 161, 0.4);
+          }
+          100% {
+            border-color: #66C48A;
+            box-shadow: 0 4px 25px rgba(102, 196, 138, 0.4);
+          }
+        }
+
         /* Officer Cards */
         .card {
           position: relative;
@@ -121,9 +144,9 @@ function Team() {
           width: 100%;
           aspect-ratio: 367 / 533;
           background: #F1F5F9;
-          border: 3px solid rgba(102, 196, 138, 0.6);
+          border: 5px solid #66C48A;
           border-radius: 12px;
-          box-shadow: 0 4px 20px rgba(102, 196, 138, 0.2);
+          animation: borderCycle 6s ease-in-out infinite;
         }
 
         .name-area {
