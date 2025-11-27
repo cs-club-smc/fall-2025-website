@@ -10,15 +10,22 @@ const boardMembers = [
   { name: "Ryon Chan", role: "Treasurer" },
 ];
 
+/**
+ * Team Page - Modern Responsive Implementation
+ * CSS Grid layout with fluid typography and natural scrolling
+ */
 function Team() {
   return (
     <div className="team-page">
+      {/* Title */}
       <h1 className="page-title">OUR TEAM</h1>
 
+      {/* Title Underline */}
       <div className="title-underline">
         <img src={line3} alt="" />
       </div>
 
+      {/* Cards Grid Container */}
       <div className="cards-grid">
         {boardMembers.map((member, index) => (
           <div
@@ -27,12 +34,15 @@ function Team() {
             style={{ animationDelay: `${index * 0.15}s` }}
           >
             <div className="card-bg" />
-            <p className="member-name">{member.name}</p>
+            <div className="name-area">
+              <p className="member-name">{member.name}</p>
+            </div>
             <p className="role-title">{member.role}</p>
           </div>
         ))}
       </div>
 
+      {/* Bottom Line */}
       <div className="bottom-line">
         <img src={line3} alt="" />
       </div>
@@ -71,6 +81,7 @@ function Team() {
           display: block;
         }
 
+        /* Cards Grid - Modern Responsive Layout */
         .cards-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 367px));
@@ -81,6 +92,7 @@ function Team() {
           margin-bottom: clamp(2rem, 4vh, 4rem);
         }
 
+        /* Force 3 columns on large screens */
         @media (min-width: 1200px) {
           .cards-grid {
             grid-template-columns: repeat(3, minmax(320px, 367px));
@@ -96,6 +108,7 @@ function Team() {
           }
         }
 
+        /* Officer Cards */
         .card {
           position: relative;
           width: 100%;
@@ -106,31 +119,37 @@ function Team() {
 
         .card-bg {
           width: 100%;
-          aspect-ratio: 367 / 400;
+          aspect-ratio: 367 / 533;
           background: #F1F5F9;
-          border-radius: 8px;
+        }
+
+        .name-area {
+          position: absolute;
+          left: 4.6%;
+          top: 5.25%;
+          width: 90.7%;
+          height: 76.4%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .member-name {
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          top: 35%;
-          width: 85%;
           font-family: 'Russo One', sans-serif;
           font-size: clamp(1.5rem, 2vw, 2rem);
           font-weight: 400;
-          line-height: normal;
+          line-height: 1.3;
           text-align: center;
           color: #000000;
           margin: 0;
+          padding: 1rem;
         }
 
         .role-title {
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
-          bottom: 12%;
+          bottom: 5.25%;
           width: 78.7%;
           font-family: 'Russo One', sans-serif;
           font-size: clamp(1.25rem, 1.5vw, 1.5rem);
@@ -141,6 +160,7 @@ function Team() {
           margin: 0;
         }
 
+        /* Bottom Line */
         .bottom-line {
           width: clamp(300px, 91.4vw, 1754px);
           height: 5px;
@@ -153,6 +173,7 @@ function Team() {
           display: block;
         }
 
+        /* Tablet - 2 Column Layout */
         @media (max-width: 1024px) {
           .cards-grid {
             grid-template-columns: repeat(2, minmax(280px, 367px));
@@ -164,6 +185,7 @@ function Team() {
           }
         }
 
+        /* Mobile - Single Column Layout */
         @media (max-width: 768px) {
           .team-page {
             padding: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 4vw, 2rem);
