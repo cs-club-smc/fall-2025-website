@@ -47,15 +47,22 @@ function Team() {
         <img src={line3} alt="" />
       </div>
 
+      {/* Footer */}
+      <footer className="page-footer">
+        <p className="footer-meetings">Weekly Meetings on Thursday @ 11:15 AM - 12:30 PM</p>
+        <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405, Drescher Hall 305</p>
+      </footer>
+
       <style jsx>{`
         .team-page {
           position: relative;
           width: 100%;
           min-height: 100vh;
-          padding: clamp(2rem, 7.5vh, 9rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 5vh, 5rem);
+          padding: clamp(2rem, 7.5vh, 9rem) clamp(1.5rem, 5vw, 5rem) 0;
           display: flex;
           flex-direction: column;
           align-items: center;
+          overflow-x: hidden;
         }
 
         .page-title {
@@ -99,6 +106,17 @@ function Team() {
           }
         }
 
+        @keyframes cardAppear {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         @keyframes float {
           0%, 100% {
             transform: translateY(0);
@@ -137,7 +155,10 @@ function Team() {
           width: 100%;
           max-width: 367px;
           justify-self: center;
-          animation: float 3.5s ease-in-out infinite;
+          opacity: 0;
+          animation:
+            cardAppear 0.6s ease-out forwards,
+            float 3.5s ease-in-out 0.6s infinite;
         }
 
         .card-bg {
@@ -214,7 +235,7 @@ function Team() {
         /* Mobile - Single Column Layout */
         @media (max-width: 768px) {
           .team-page {
-            padding: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 4vw, 2rem);
+            padding: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 4vw, 2rem) 0;
           }
 
           .cards-grid {
@@ -234,6 +255,46 @@ function Team() {
 
           .role-title {
             font-size: clamp(1rem, 4vw, 1.25rem);
+          }
+        }
+
+        /* Footer */
+        .page-footer {
+          position: relative;
+          width: 100vw;
+          margin-left: calc(-1 * clamp(1.5rem, 5vw, 5rem));
+          background: rgba(0, 0, 0, 0.85);
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 8vw, 145px);
+          flex-wrap: wrap;
+          gap: clamp(0.5rem, 1vh, 1rem);
+          box-sizing: border-box;
+          margin-top: clamp(2rem, 4vh, 4rem);
+        }
+
+        .footer-meetings,
+        .footer-location {
+          font-family: 'Roboto Mono', monospace;
+          font-size: clamp(12px, 1.5vw, 24px);
+          font-weight: 300;
+          color: #F1F5F9;
+          margin: 0;
+        }
+
+        @media (max-width: 950px) {
+          .page-footer {
+            flex-direction: column;
+            text-align: center;
+            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .page-footer {
+            margin-left: calc(-1 * clamp(1rem, 4vw, 2rem));
           }
         }
       `}</style>
