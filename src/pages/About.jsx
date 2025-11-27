@@ -71,15 +71,16 @@ function About() {
         .about-page {
           min-height: 100vh;
           background: transparent;
-          padding: 8vw 5vw 5vw 5vw;
+          padding: clamp(100px, 8vw, 140px) clamp(24px, 5vw, 80px) clamp(40px, 5vw, 80px);
         }
 
         .about-content {
           display: flex;
           flex-direction: row;
-          gap: 5vw;
+          gap: clamp(40px, 5vw, 100px);
           align-items: flex-start;
-          height: 100%;
+          max-width: 1800px;
+          margin: 0 auto;
         }
 
         .text-section {
@@ -89,29 +90,29 @@ function About() {
 
         .about-title {
           font-family: 'Russo One', sans-serif;
-          font-size: 8vw;
+          font-size: clamp(48px, 7vw, 130px);
           font-weight: 400;
           line-height: 100%;
           color: #F1F5F9;
-          margin: 0 0 4vw 0;
+          margin: 0 0 clamp(32px, 4vw, 70px) 0;
           text-align: left;
         }
 
         .about-text {
           font-family: 'Roboto Mono', ui-monospace, monospace;
-          font-size: 1.1vw;
-          line-height: 180%;
+          font-size: clamp(14px, 1.15vw, 20px);
+          line-height: 175%;
           color: #F1F5F9;
           display: flex;
           flex-direction: column;
-          gap: 2.5vw;
+          gap: clamp(20px, 2.5vw, 45px);
         }
 
         .about-text section h2 {
-          font-size: 1.5vw;
+          font-size: clamp(18px, 1.5vw, 28px);
           font-weight: 600;
           color: #66C48A;
-          margin: 0 0 0.8vw 0;
+          margin: 0 0 clamp(8px, 0.8vw, 14px) 0;
         }
 
         .about-text section p {
@@ -122,13 +123,13 @@ function About() {
           flex-shrink: 0;
           display: flex;
           align-items: flex-start;
-          padding-top: 2vw;
+          padding-top: clamp(16px, 2vw, 40px);
         }
 
         .image-cluster {
           position: relative;
-          width: 30vw;
-          height: 42vw;
+          width: clamp(280px, 28vw, 500px);
+          height: clamp(400px, 40vw, 700px);
         }
 
         .image-card {
@@ -144,98 +145,98 @@ function About() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 1.5vw;
+          border-radius: clamp(12px, 1.2vw, 24px);
         }
 
         .image-shadow {
           position: absolute;
           inset: 0;
-          border-radius: 1.8vw;
+          border-radius: clamp(14px, 1.4vw, 28px);
           background: rgba(0, 0, 0, 0.75);
           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
           z-index: -1;
-          transform: translate(0.8vw, 0.8vw);
+          transform: translate(clamp(6px, 0.6vw, 12px), clamp(6px, 0.6vw, 12px));
         }
 
         .image-card-1 {
           top: 0;
           left: 0;
-          width: 24vw;
-          height: 28vw;
+          width: clamp(220px, 22vw, 400px);
+          height: clamp(260px, 26vw, 460px);
           z-index: 10;
         }
 
         .image-card-2 {
-          top: 14vw;
-          left: 10vw;
-          width: 20vw;
-          height: 24vw;
+          top: clamp(120px, 12vw, 220px);
+          left: clamp(80px, 9vw, 160px);
+          width: clamp(180px, 18vw, 320px);
+          height: clamp(220px, 22vw, 380px);
           z-index: 20;
         }
 
-        /* Tablet */
+        /* Tablet and below - stack vertically */
         @media (max-width: 1024px) {
-          .about-page {
-            padding: 120px 5vw 5vw 5vw;
-          }
-
           .about-content {
             flex-direction: column;
-            gap: 8vw;
+            gap: 50px;
           }
 
           .about-title {
-            font-size: 12vw;
-            margin-bottom: 6vw;
+            font-size: clamp(40px, 10vw, 80px);
+            margin-bottom: 30px;
           }
 
           .about-text {
-            font-size: 2.2vw;
-            gap: 4vw;
+            font-size: clamp(14px, 2.5vw, 18px);
+            gap: 24px;
           }
 
           .about-text section h2 {
-            font-size: 3vw;
-            margin-bottom: 1.5vw;
+            font-size: clamp(16px, 3.5vw, 24px);
+            margin-bottom: 10px;
           }
 
           .image-section {
             width: 100%;
             justify-content: center;
+            padding-top: 0;
           }
 
           .image-cluster {
-            width: 70vw;
-            height: 90vw;
+            width: min(500px, 85vw);
+            height: min(650px, 110vw);
           }
 
           .image-card-1 {
-            width: 55vw;
-            height: 65vw;
+            width: min(380px, 65vw);
+            height: min(450px, 75vw);
           }
 
           .image-card-2 {
-            top: 35vw;
-            left: 25vw;
-            width: 45vw;
-            height: 52vw;
+            top: min(250px, 42vw);
+            left: min(150px, 28vw);
+            width: min(320px, 55vw);
+            height: min(380px, 62vw);
           }
         }
 
         /* Mobile */
         @media (max-width: 640px) {
+          .about-page {
+            padding: 100px 20px 40px;
+          }
+
           .about-title {
-            font-size: 14vw;
+            font-size: 13vw;
           }
 
           .about-text {
-            font-size: 3.5vw;
-            gap: 5vw;
+            font-size: 15px;
+            gap: 20px;
           }
 
           .about-text section h2 {
-            font-size: 4.5vw;
-            margin-bottom: 2vw;
+            font-size: 18px;
           }
         }
       `}</style>
