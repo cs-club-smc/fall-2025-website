@@ -3,68 +3,11 @@ import { Link } from "react-router-dom";
 
 /**
  * Projects Section - Responsive flexbox layout with fluid scaling
+ * Now wrapped by parent for scroll animations
  */
 function Projects() {
-  // Stagger animation for blocks
-  const blockVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0,
-      rotate: -10
-    },
-    visible: (i) => ({
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    })
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, x: 60 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.2,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        delay: 0.4,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
   return (
-    <section id="projects" className="projects-section">
+    <div className="projects-section">
       <div className="projects-layout">
         {/* Projects Blocks - decorative shapes with stagger */}
         <div className="blocks-container">
@@ -73,11 +16,13 @@ function Projects() {
               <motion.div
                 key={num}
                 className={`block block-${num}`}
-                custom={index}
-                variants={blockVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
+                initial={{ opacity: 0, scale: 0, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{
+                  delay: index * 0.08,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
                 whileHover={{
                   scale: 1.1,
                   rotate: num % 2 === 0 ? 5 : -5,
@@ -92,27 +37,24 @@ function Projects() {
         <div className="description-container">
           <motion.h1
             className="projects-title"
-            variants={titleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.5 }}
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             PROJECTS
           </motion.h1>
           <motion.p
             className="projects-description"
-            variants={textVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.5 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
           </motion.p>
           <motion.div
-            variants={buttonVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.5 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
           >
             <Link to="/ProjectsPage">
               <motion.button
@@ -131,11 +73,10 @@ function Projects() {
         .projects-section {
           position: relative;
           width: 100%;
-          min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 5vw, 3rem);
+          padding: clamp(2rem, 5vh, 4rem) clamp(1rem, 5vw, 3rem);
           box-sizing: border-box;
         }
 
@@ -277,7 +218,7 @@ function Projects() {
           }
         }
       `}</style>
-    </section>
+    </div>
   );
 }
 

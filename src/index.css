@@ -44,13 +44,8 @@ body {
 
 #root {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   color: oklch(98.5% 0 0);
-}
-
-p {
-  margin-top: 1rem;
-  color: oklch(70.8% 0 0);
 }
 
 .sidebar {
@@ -91,44 +86,4 @@ p {
   text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
 }
 
-/* Home page styles */
-.home-container {
-  position: relative;
-}
-
-.home-section {
-  position: relative;
-  min-height: 100vh;
-}
-
-
-.home-footer {
-  position: relative;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: clamp(1rem, 2vh, 1.5rem) clamp(1rem, 8vw, 145px);
-  z-index: 5;
-  flex-wrap: wrap;
-  gap: clamp(0.5rem, 1vh, 1rem);
-  box-sizing: border-box;
-}
-
-.footer-meetings,
-.footer-location {
-  font-family: 'Roboto Mono', monospace;
-  font-size: clamp(12px, 1.5vw, 24px);
-  font-weight: 300;
-  color: #F1F5F9;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .home-footer {
-    flex-direction: column;
-    text-align: center;
-    padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
-  }
-}
+/* Home page styles - main styles now in Home.jsx for scroll animations */
