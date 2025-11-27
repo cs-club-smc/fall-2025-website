@@ -1,11 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
 import ProjectsPage from "./components/Home/ProjectsPage";
 import Navbar from "./components/Navbar";
+import PageTransition from "./components/PageTransition";
 import Background from './assets/Background.png';
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/team" element={<PageTransition><Team /></PageTransition>} />
+        <Route path="/ProjectsPage" element={<PageTransition><ProjectsPage /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 function App() {
   return (
@@ -26,13 +44,7 @@ function App() {
       />
       <Router>
         <Navbar />
-        <Routes>
-          <Route element={<Home />} path="/"/>
-          <Route element={<About />} path="/about" />
-          <Route element={<Team />} path="/team" />
-          <Route element={<ProjectsPage />} path="/ProjectsPage" />
-          <Route element={<NotFound />} path="*" />
-        </Routes>
+        <AnimatedRoutes />
       </Router>
     </div>
   );
