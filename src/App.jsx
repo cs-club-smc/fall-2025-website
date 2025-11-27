@@ -7,7 +7,7 @@ import NotFound from "./pages/NotFound";
 import ProjectsPage from "./components/Home/ProjectsPage";
 import Navbar from "./components/Navbar";
 import PageTransition from "./components/PageTransition";
-import Background from './assets/Background.png';
+import AnimatedBackground from "./components/AnimatedBackground";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -28,20 +28,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <div className="min-h-screen">
-      <div
-        className="fixed -z-10"
-        style={{
-          backgroundImage: `url(${Background})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: '-100vh',
-          height: 'calc(100% + 100vh)'
-        }}
-      />
+      <AnimatedBackground />
       <Router>
         <Navbar />
         <AnimatedRoutes />
