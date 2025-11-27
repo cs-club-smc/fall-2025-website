@@ -121,6 +121,9 @@ function Team() {
           width: 100%;
           aspect-ratio: 367 / 533;
           background: #F1F5F9;
+          border: 3px solid rgba(102, 196, 138, 0.6);
+          border-radius: 12px;
+          box-shadow: 0 4px 20px rgba(102, 196, 138, 0.2);
         }
 
         .name-area {
