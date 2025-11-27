@@ -19,14 +19,14 @@ function AnimatedBackground() {
 
     const initParticles = () => {
       particles = [];
-      const count = Math.floor((canvas.width * canvas.height) / 25000);
+      const count = Math.floor((canvas.width * canvas.height) / 60000);
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * 2.5 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.8,
-          speedY: (Math.random() - 0.5) * 0.8,
+          speedX: (Math.random() - 0.5) * 0.2,
+          speedY: (Math.random() - 0.5) * 0.2,
           opacity: Math.random() * 0.7 + 0.3,
           pulse: Math.random() * Math.PI * 2,
           color: Math.random() > 0.5 ? '#66C48A' : '#4ECDC4'
