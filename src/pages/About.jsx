@@ -3,100 +3,242 @@ import logo from '../assets/About/logo.jpg'
 
 function About() {
   return (
-    <main className="min-h-screen bg-transparent">
-      <div className="h-[140px]" />
+    <main className="about-page">
+      <div className="about-content">
+        {/* Left side - Text content */}
+        <div className="text-section">
+          <h1 className="about-title">ABOUT US</h1>
 
-      <div className="px-8 lg:px-16 xl:px-24">
-        <div className="flex flex-col xl:flex-row gap-16 xl:gap-24 items-start">
-          {/* Left side - Text content */}
-          <div className="flex-1 w-full">
-            <h1
-              className="text-white select-none text-left mb-12 lg:mb-16"
-              style={{
-                fontFamily: '"Russo One", sans-serif',
-                fontSize: 'clamp(60px, 10vw, 120px)',
-                lineHeight: '100%',
-              }}
-            >
-              ABOUT US
-            </h1>
+          <div className="about-text">
+            <section>
+              <h2>Description:</h2>
+              <p>
+                Our club brings together students who are passionate about
+                computer science and technology. We organize workshops,
+                hackathons, and social events to help members learn new skills,
+                collaborate, and explore career opportunities in tech.
+              </p>
+            </section>
 
-            <div
-              className="text-white space-y-8 lg:space-y-10 text-left max-w-4xl"
-              style={{
-                fontFamily:
-                  '"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace',
-                fontSize: 'clamp(14px, 1.1vw, 18px)',
-                lineHeight: '170%',
-              }}
-            >
-              <section>
-                <h2 className="font-semibold text-xl lg:text-2xl mb-3 text-[#66C48A]">Description:</h2>
-                <p>
-                  Our club brings together students who are passionate about
-                  computer science and technology. We organize workshops,
-                  hackathons, and social events to help members learn new skills,
-                  collaborate, and explore career opportunities in tech.
-                </p>
-              </section>
+            <section>
+              <h2>Mission Statement:</h2>
+              <p>
+                To create a supportive and inclusive space where students can
+                grow their technical and professional skills while building
+                lasting connections through shared curiosity and creativity.
+              </p>
+            </section>
 
-              <section>
-                <h2 className="font-semibold text-xl lg:text-2xl mb-3 text-[#66C48A]">Mission Statement:</h2>
-                <p>
-                  To create a supportive and inclusive space where students can
-                  grow their technical and professional skills while building
-                  lasting connections through shared curiosity and creativity.
-                </p>
-              </section>
+            <section>
+              <h2>Goals:</h2>
+              <p>
+                – Host coding workshops and guest speaker events. <br />
+                – Encourage collaboration on open-source or student projects. <br />
+                – Help members prepare for internships and tech interviews. <br />
+                – Promote diversity and accessibility in STEM fields.
+              </p>
+            </section>
 
-              <section>
-                <h2 className="font-semibold text-xl lg:text-2xl mb-3 text-[#66C48A]">Goals:</h2>
-                <p>
-                  – Host coding workshops and guest speaker events. <br />
-                  – Encourage collaboration on open-source or student projects. <br />
-                  – Help members prepare for internships and tech interviews. <br />
-                  – Promote diversity and accessibility in STEM fields.
-                </p>
-              </section>
+            <section>
+              <h2>Advisors:</h2>
+              <p>Prof. John Doe and Dr. Jane Smith</p>
+            </section>
 
-              <section>
-                <h2 className="font-semibold text-xl lg:text-2xl mb-3 text-[#66C48A]">Advisors:</h2>
-                <p>Prof. John Doe and Dr. Jane Smith</p>
-              </section>
-
-              <section>
-                <h2 className="font-semibold text-xl lg:text-2xl mb-3 text-[#66C48A]">
-                  Affiliated Organizations:
-                </h2>
-                <p>Santa Monica College Computer Science Department, ACM</p>
-              </section>
-            </div>
+            <section>
+              <h2>Affiliated Organizations:</h2>
+              <p>Santa Monica College Computer Science Department, ACM</p>
+            </section>
           </div>
+        </div>
 
-          {/* Right side - Image cluster */}
-          <div className="flex-shrink-0 w-full xl:w-auto flex justify-center xl:justify-end xl:pt-16">
-            <div className="relative w-[380px] h-[540px] md:w-[480px] md:h-[640px] xl:w-[520px] xl:h-[700px]">
-              <div className="absolute top-0 left-0 w-[300px] h-[360px] md:w-[380px] md:h-[440px] xl:w-[420px] xl:h-[500px] z-10 transition-transform duration-500 hover:-translate-y-2">
-                <div className="absolute inset-0 rounded-[28px] bg-black/75 shadow-[0_8px_30px_rgba(0,0,0,0.6)] -z-10 translate-x-3 translate-y-3" />
-                <img
-                  src={meeting}
-                  alt="CS Club meeting"
-                  className="w-full h-full object-cover rounded-[20px]"
-                />
-              </div>
+        {/* Right side - Image cluster */}
+        <div className="image-section">
+          <div className="image-cluster">
+            <div className="image-card image-card-1">
+              <div className="image-shadow" />
+              <img src={meeting} alt="CS Club meeting" />
+            </div>
 
-              <div className="absolute top-[200px] left-[100px] md:top-[240px] md:left-[140px] xl:top-[280px] xl:left-[160px] w-[280px] h-[320px] md:w-[340px] md:h-[380px] xl:w-[360px] xl:h-[400px] z-20 transition-transform duration-500 hover:-translate-y-2">
-                <div className="absolute inset-0 rounded-[28px] bg-black/75 shadow-[0_8px_30px_rgba(0,0,0,0.6)] -z-10 translate-x-3 translate-y-3" />
-                <img
-                  src={logo}
-                  alt="CS Club logo"
-                  className="w-full h-full object-cover rounded-[20px]"
-                />
-              </div>
+            <div className="image-card image-card-2">
+              <div className="image-shadow" />
+              <img src={logo} alt="CS Club logo" />
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .about-page {
+          min-height: 100vh;
+          background: transparent;
+          padding: 8vw 5vw 5vw 5vw;
+        }
+
+        .about-content {
+          display: flex;
+          flex-direction: row;
+          gap: 5vw;
+          align-items: flex-start;
+          height: 100%;
+        }
+
+        .text-section {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .about-title {
+          font-family: 'Russo One', sans-serif;
+          font-size: 8vw;
+          font-weight: 400;
+          line-height: 100%;
+          color: #F1F5F9;
+          margin: 0 0 4vw 0;
+          text-align: left;
+        }
+
+        .about-text {
+          font-family: 'Roboto Mono', ui-monospace, monospace;
+          font-size: 1.1vw;
+          line-height: 180%;
+          color: #F1F5F9;
+          display: flex;
+          flex-direction: column;
+          gap: 2.5vw;
+        }
+
+        .about-text section h2 {
+          font-size: 1.5vw;
+          font-weight: 600;
+          color: #66C48A;
+          margin: 0 0 0.8vw 0;
+        }
+
+        .about-text section p {
+          margin: 0;
+        }
+
+        .image-section {
+          flex-shrink: 0;
+          display: flex;
+          align-items: flex-start;
+          padding-top: 2vw;
+        }
+
+        .image-cluster {
+          position: relative;
+          width: 30vw;
+          height: 42vw;
+        }
+
+        .image-card {
+          position: absolute;
+          transition: transform 0.5s ease;
+        }
+
+        .image-card:hover {
+          transform: translateY(-10px);
+        }
+
+        .image-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 1.5vw;
+        }
+
+        .image-shadow {
+          position: absolute;
+          inset: 0;
+          border-radius: 1.8vw;
+          background: rgba(0, 0, 0, 0.75);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+          z-index: -1;
+          transform: translate(0.8vw, 0.8vw);
+        }
+
+        .image-card-1 {
+          top: 0;
+          left: 0;
+          width: 24vw;
+          height: 28vw;
+          z-index: 10;
+        }
+
+        .image-card-2 {
+          top: 14vw;
+          left: 10vw;
+          width: 20vw;
+          height: 24vw;
+          z-index: 20;
+        }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+          .about-page {
+            padding: 120px 5vw 5vw 5vw;
+          }
+
+          .about-content {
+            flex-direction: column;
+            gap: 8vw;
+          }
+
+          .about-title {
+            font-size: 12vw;
+            margin-bottom: 6vw;
+          }
+
+          .about-text {
+            font-size: 2.2vw;
+            gap: 4vw;
+          }
+
+          .about-text section h2 {
+            font-size: 3vw;
+            margin-bottom: 1.5vw;
+          }
+
+          .image-section {
+            width: 100%;
+            justify-content: center;
+          }
+
+          .image-cluster {
+            width: 70vw;
+            height: 90vw;
+          }
+
+          .image-card-1 {
+            width: 55vw;
+            height: 65vw;
+          }
+
+          .image-card-2 {
+            top: 35vw;
+            left: 25vw;
+            width: 45vw;
+            height: 52vw;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+          .about-title {
+            font-size: 14vw;
+          }
+
+          .about-text {
+            font-size: 3.5vw;
+            gap: 5vw;
+          }
+
+          .about-text section h2 {
+            font-size: 4.5vw;
+            margin-bottom: 2vw;
+          }
+        }
+      `}</style>
     </main>
   )
 }
