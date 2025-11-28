@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Team from "./pages/Team";
@@ -27,7 +27,7 @@ function App() {
       />
       <Router>
         <Navbar />
-        <Sidebar />
+        <ConditionalSidebar />
         <Routes>
           <Route element={<Home />} path="/"/>
           <Route element={<About />} path="/about" />
@@ -38,6 +38,12 @@ function App() {
       </Router>
     </div>
   );
+}
+
+function ConditionalSidebar() {
+  const location = useLocation();
+  if (location.pathname === "/ProjectsPage") return null;
+  return <Sidebar />;
 }
 
 export default App;
