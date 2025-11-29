@@ -70,7 +70,7 @@ function Announcements() {
                 transition: { duration: 0.2 }
               }}
             >
-              <h2 className="card-title" style={ index % 3 == 1 ? { textAlign: "right" } : { textAlign: 'left' }}>{announcement.title}</h2>
+              <h2 className="card-title" style={{ textAlign: 'left' }}>{announcement.title}</h2>
               <p className="card-message">{announcement.message}</p>
             </motion.div>
           </>
