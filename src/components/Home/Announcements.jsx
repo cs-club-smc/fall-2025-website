@@ -1,33 +1,55 @@
-import { color, motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import AnnouncmentPopUp from '../AnnouncmentPopUp';
 
 /**
  * Announcements Section - Flexbox layout with fluid scaling
  * Now wrapped by parent for scroll animations
  */
 function Announcements() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const announcements = [
     {
+      
       id: 1,
       author: 'Evan Ly',
       date: 'December 18th, 2024 8:44 P.M',
-      title: 'Just some test title',
-      message: "Hi I'm just a text box here, you can add any text long or short here. Text here are just announcements for the SMC CS Club.",
+      title: 'Announcment Name',
+      message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ",
     },
     {
       id: 2,
       author: 'Evan Ly',
       date: 'December 18th, 2024 8:44 P.M',
-      title: 'Just some test title',
+      title: 'Announcment Name 1',
       message: "Hi I'm just a text box here, you can add any text long or short here. Text here are just announcements for the SMC CS Club.",
     },
     {
       id: 3,
       author: 'Evan Ly',
       date: 'December 18th, 2024 8:44 P.M',
-      title: 'Just some test title',
+      title: 'Announcment Name',
       message: "Hi I'm just a text box here, you can add any text long or short here. Text here are just announcements for the SMC CS Club.",
     }
   ];
+
+  // Handle ESC key to close popup
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === 'Escape' && isPopupOpen) {
+        setIsPopupOpen(false);
+      }
+    };
+
+    if (isPopupOpen) {
+      document.addEventListener('keydown', handleEsc);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [isPopupOpen]);
 
   const colorBank = [
     {foreground: '#0088FE', background: '#4273AA'},
@@ -84,8 +106,23 @@ function Announcements() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.5 }}
       >
-        <button className="read-all-button">Read All &gt;</button>
+        <button 
+          className="read-all-button"
+          onClick={() => setIsPopupOpen(true)}
+        >
+          Read All &gt;
+        </button>
       </motion.div>
+
+      {/* Popup Modal */}
+      <AnimatePresence>
+        {isPopupOpen && (
+          <AnnouncmentPopUp
+            onClose={() => setIsPopupOpen(false)}
+            announcements={announcements}
+          />
+        )}
+      </AnimatePresence>
 
       <style jsx>{`
         .announcements-section {
