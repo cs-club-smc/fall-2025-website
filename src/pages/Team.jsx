@@ -30,6 +30,14 @@ function Team() {
           </div>
           <p className="role-title">President</p>
         </div>
+        <div class="card_back">
+          <h3>Content</h3>
+        </div>
+        <div class="card_body">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A omnis sunt quasi ipsum itaque veritatis, iusto accusantium placeat blanditiis quod! Aperiam magnam non odio labore fugiat itaque atque minus unde!
+
+        </p>
+        </div>
 
         {/* Card 2 - Vice President */}
         <div className="card">
@@ -40,6 +48,15 @@ function Team() {
           <p className="role-title">Vice President</p>
         </div>
 
+         <div class="card_back">
+          <h3>Content</h3>
+        </div>
+        <div class="card_body">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A omnis sunt quasi ipsum itaque veritatis, iusto accusantium placeat blanditiis quod! Aperiam magnam non odio labore fugiat itaque atque minus unde!
+
+        </p>
+        </div>
+
         {/* Card 3 - Secretary */}
         <div className="card">
           <div className="card-bg" />
@@ -47,6 +64,15 @@ function Team() {
             <img src={secretaryImg} alt="Secretary" className="officer-photo" />
           </div>
           <p className="role-title">Secretary</p>
+        </div>
+
+         <div class="card_back">
+          <h3>Content</h3>
+        </div>
+        <div class="card_body">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A omnis sunt quasi ipsum itaque veritatis, iusto accusantium placeat blanditiis quod! Aperiam magnam non odio labore fugiat itaque atque minus unde!
+
+        </p>
         </div>
 
         {/* Placeholder Cards */}
@@ -132,6 +158,42 @@ function Team() {
           width: 100%;
           max-width: 367px;
           justify-self: center;
+        }
+
+        .flip-card {
+          perspective: 1000px;
+          position: relative;
+          transform-style: preserve-3d;
+          transition: transform 0.5s;
+        }
+
+        .flip-card.flipped {
+          transform: rotateY(180deg);
+        }
+
+        .flip-card-inner {
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+          background-color: # ;
+          color: ;
+        }
+
+        .flip-card-back {
+          background-color: # ;
+          color: ;
+          transform: rotateY(180deg);
         }
 
         .card-bg {
