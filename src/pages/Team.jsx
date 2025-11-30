@@ -1,9 +1,14 @@
-import presidentImg from '../assets/team/image-6.png';
-import vpImg from '../assets/team/image-7.png';
-import secretaryImg from '../assets/team/image-9.png';
-import line4 from '../assets/team/line-4.svg';
 import line3 from '../assets/team/line-3.svg';
-import maskImg from '../assets/team/image-8.svg';
+
+const boardMembers = [
+  { name: "Evan Ly Cheang", role: "Co-President" },
+  { name: "Kai Shimoda", role: "Co-President" },
+  { name: "Sean Esla", role: "Vice President" },
+  { name: "Aidana Kudaibergenova", role: "ICC Delegate" },
+  { name: "Akua Baryeh", role: "Publicity Officer" },
+  { name: "Kathleen Gantasia", role: "Secretary" },
+  { name: "Ryon Chan", role: "Treasurer" },
+];
 
 /**
  * Team Page - Modern Responsive Implementation
@@ -17,56 +22,24 @@ function Team() {
 
       {/* Title Underline */}
       <div className="title-underline">
-        <img src={line4} alt="" />
+        <img src={line3} alt="" />
       </div>
 
       {/* Cards Grid Container */}
       <div className="cards-grid">
-        {/* Card 1 - President */}
-        <div className="card">
-          <div className="card-bg" />
-          <div className="photo-mask">
-            <img src={presidentImg} alt="President" className="officer-photo" />
+        {boardMembers.map((member, index) => (
+          <div
+            key={member.name}
+            className="card"
+            style={{ animationDelay: `${index * 0.15}s` }}
+          >
+            <div className="card-bg" />
+            <div className="name-area">
+              <p className="member-name">{member.name}</p>
+            </div>
+            <p className="role-title">{member.role}</p>
           </div>
-          <p className="role-title">President</p>
-        </div>
-
-        {/* Card 2 - Vice President */}
-        <div className="card">
-          <div className="card-bg" />
-          <div className="photo-mask">
-            <img src={vpImg} alt="Vice President" className="officer-photo" />
-          </div>
-          <p className="role-title">Vice President</p>
-        </div>
-
-        {/* Card 3 - Secretary */}
-        <div className="card">
-          <div className="card-bg" />
-          <div className="photo-mask">
-            <img src={secretaryImg} alt="Secretary" className="officer-photo" />
-          </div>
-          <p className="role-title">Secretary</p>
-        </div>
-
-        {/* Placeholder Cards */}
-        <div className="card">
-          <div className="card-bg" />
-          <div className="photo-mask placeholder-photo" />
-          <p className="role-title">ICC Publicity</p>
-        </div>
-
-        <div className="card">
-          <div className="card-bg" />
-          <div className="photo-mask placeholder-photo" />
-          <p className="role-title">Treasurer</p>
-        </div>
-
-        <div className="card">
-          <div className="card-bg" />
-          <div className="photo-mask placeholder-photo" />
-          <p className="role-title">Publicity Officer</p>
-        </div>
+        ))}
       </div>
 
       {/* Bottom Line */}
@@ -74,15 +47,22 @@ function Team() {
         <img src={line3} alt="" />
       </div>
 
+      {/* Footer */}
+      <footer className="page-footer">
+        <p className="footer-meetings">Weekly Meetings on Thursday @ 11:15 AM - 12:30 PM</p>
+        <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405, Drescher Hall 305</p>
+      </footer>
+
       <style jsx>{`
         .team-page {
           position: relative;
           width: 100%;
           min-height: 100vh;
-          padding: clamp(2rem, 7.5vh, 9rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 5vh, 5rem);
+          padding: clamp(2rem, 7.5vh, 9rem) clamp(1.5rem, 5vw, 5rem) 0;
           display: flex;
           flex-direction: column;
           align-items: center;
+          overflow-x: hidden;
         }
 
         .page-title {
@@ -126,45 +106,90 @@ function Team() {
           }
         }
 
+        @keyframes cardAppear {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-6px);
+          }
+        }
+
+        @keyframes borderCycle {
+          0% {
+            border-color: #66C48A;
+            box-shadow: 0 4px 25px rgba(102, 196, 138, 0.4);
+          }
+          25% {
+            border-color: #4ECDC4;
+            box-shadow: 0 4px 25px rgba(78, 205, 196, 0.4);
+          }
+          50% {
+            border-color: #45B7D1;
+            box-shadow: 0 4px 25px rgba(69, 183, 209, 0.4);
+          }
+          75% {
+            border-color: #96E6A1;
+            box-shadow: 0 4px 25px rgba(150, 230, 161, 0.4);
+          }
+          100% {
+            border-color: #66C48A;
+            box-shadow: 0 4px 25px rgba(102, 196, 138, 0.4);
+          }
+        }
+
         /* Officer Cards */
         .card {
           position: relative;
           width: 100%;
           max-width: 367px;
           justify-self: center;
+          opacity: 0;
+          animation:
+            cardAppear 0.6s ease-out forwards,
+            float 3.5s ease-in-out 0.6s infinite;
         }
 
         .card-bg {
           width: 100%;
           aspect-ratio: 367 / 533;
           background: #F1F5F9;
+          border: 5px solid #66C48A;
+          border-radius: 12px;
+          animation: borderCycle 6s ease-in-out infinite;
         }
 
-        .photo-mask {
+        .name-area {
           position: absolute;
           left: 4.6%;
           top: 5.25%;
           width: 90.7%;
           height: 76.4%;
-          overflow: hidden;
-          -webkit-mask-image: url(${maskImg});
-          mask-image: url(${maskImg});
-          -webkit-mask-size: contain;
-          mask-size: contain;
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-          -webkit-mask-position: center;
-          mask-position: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
-        .officer-photo {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .placeholder-photo {
-          background: #D9D9D9;
+        .member-name {
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(1.5rem, 2vw, 2rem);
+          font-weight: 400;
+          line-height: 1.3;
+          text-align: center;
+          color: #000000;
+          margin: 0;
+          padding: 1rem;
         }
 
         .role-title {
@@ -210,7 +235,7 @@ function Team() {
         /* Mobile - Single Column Layout */
         @media (max-width: 768px) {
           .team-page {
-            padding: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 4vw, 2rem);
+            padding: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 4vw, 2rem) 0;
           }
 
           .cards-grid {
@@ -230,6 +255,46 @@ function Team() {
 
           .role-title {
             font-size: clamp(1rem, 4vw, 1.25rem);
+          }
+        }
+
+        /* Footer */
+        .page-footer {
+          position: relative;
+          width: 100vw;
+          margin-left: calc(-1 * clamp(1.5rem, 5vw, 5rem));
+          background: rgba(0, 0, 0, 0.85);
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 8vw, 145px);
+          flex-wrap: wrap;
+          gap: clamp(0.5rem, 1vh, 1rem);
+          box-sizing: border-box;
+          margin-top: clamp(2rem, 4vh, 4rem);
+        }
+
+        .footer-meetings,
+        .footer-location {
+          font-family: 'Roboto Mono', monospace;
+          font-size: clamp(12px, 1.5vw, 24px);
+          font-weight: 300;
+          color: #F1F5F9;
+          margin: 0;
+        }
+
+        @media (max-width: 950px) {
+          .page-footer {
+            flex-direction: column;
+            text-align: center;
+            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .page-footer {
+            margin-left: calc(-1 * clamp(1rem, 4vw, 2rem));
           }
         }
       `}</style>

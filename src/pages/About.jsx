@@ -1,262 +1,294 @@
-import topPhoto from '../assets/about/image-6.png';
-import bottomPhoto from '../assets/about/whatsapp-image.png';
-import maskPolaroid from '../assets/about/image-5.svg';
-import maskRounded from '../assets/about/rectangle-33.svg';
+import meeting from '../assets/About/meeting.png'
+import logo from '../assets/About/logo.jpg'
 
-/**
- * About Page - Exact Figma Implementation
- * Text content on left, layered photos on right
- */
 function About() {
   return (
-    <div className="about-page">
-      {/* Title */}
-      <h1 className="page-title">ABOUT US</h1>
+    <main className="about-page">
+      <div className="about-content">
+        {/* Left side - Text content */}
+        <div className="text-section">
+          <h1 className="about-title">ABOUT US</h1>
 
-      {/* Text Content */}
-      <div className="text-content">
-        <p className="text-section">Description Of the Club</p>
-        <p className="text-paragraph">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        </p>
-        <br />
+          <div className="about-text">
+            <section>
+              <h2>Description:</h2>
+              <p>
+                Our club brings together students who are passionate about
+                computer science and technology. We organize workshops,
+                hackathons, and social events to help members learn new skills,
+                collaborate, and explore career opportunities in tech.
+              </p>
+            </section>
 
-        <p className="text-section">Mission Statement</p>
-        <p className="text-paragraph">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        </p>
-        <br />
+            <section>
+              <h2>Mission Statement:</h2>
+              <p>
+                To create a supportive and inclusive space where students can
+                grow their technical and professional skills while building
+                lasting connections through shared curiosity and creativity.
+              </p>
+            </section>
 
-        <p className="text-section">Goals</p>
-        <p className="text-paragraph">
-          "Lorem ipsum dolor sit amet afowaifawi aofiwafioafafaoifafoafaifbiawofbao foaifbwoaa teoaifbwaoi
-        </p>
-        <br />
+            <section>
+              <h2>Goals:</h2>
+              <p>
+                – Host coding workshops and guest speaker events. <br />
+                – Encourage collaboration on open-source or student projects. <br />
+                – Help members prepare for internships and tech interviews. <br />
+                – Promote diversity and accessibility in STEM fields.
+              </p>
+            </section>
 
-        <p className="text-section">Advisors</p>
-        <p className="text-paragraph">
-          "Lorem ipsum dolor sit amet
-        </p>
-        <br />
+            <section>
+              <h2>Advisors:</h2>
+              <p>Prof. John Doe and Dr. Jane Smith</p>
+            </section>
 
-        <p className="text-section">Affiliated Organizations</p>
-        <p className="text-paragraph">
-          "Lorem ipsum dolor
-        </p>
+            <section>
+              <h2>Affiliated Organizations:</h2>
+              <p>Santa Monica College Computer Science Department, ACM</p>
+            </section>
+          </div>
+        </div>
+
+        {/* Right side - Image cluster */}
+        <div className="image-section">
+          <div className="image-cluster">
+            <div className="image-card image-card-1">
+              <div className="image-shadow" />
+              <img src={meeting} alt="CS Club meeting" />
+            </div>
+
+            <div className="image-card image-card-2">
+              <div className="image-shadow" />
+              <img src={logo} alt="CS Club logo" />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Top Polaroid Photo with Mask */}
-      <div className="photo-polaroid">
-        <img src={topPhoto} alt="CS Club" className="polaroid-img" />
-      </div>
-
-      {/* Dark Rounded Rectangle Overlay */}
-      <div className="dark-overlay" />
-
-      {/* Bottom Photo with Rounded Mask */}
-      <div className="photo-bottom">
-        <img src={bottomPhoto} alt="CS Club event" className="bottom-img" />
-      </div>
+      {/* Footer */}
+      <footer className="page-footer">
+        <p className="footer-meetings">Weekly Meetings on Thursday @ 11:15 AM - 12:30 PM</p>
+        <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405, Drescher Hall 305</p>
+      </footer>
 
       <style jsx>{`
         .about-page {
-          position: relative;
-          width: 100%;
-          height: 100vh;
-          overflow: hidden;
+          min-height: 100vh;
+          background: transparent;
+          padding: clamp(100px, 8vw, 140px) clamp(24px, 5vw, 80px) 0;
+          overflow-x: hidden;
         }
 
-        .page-title {
-          position: absolute;
-          left: 278px;
-          top: 199px;
-          width: 553px;
-          height: 133px;
+        .about-content {
+          display: flex;
+          flex-direction: row;
+          gap: clamp(40px, 5vw, 100px);
+          align-items: flex-start;
+          max-width: 1800px;
+          margin: 0 auto;
+        }
+
+        .text-section {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .about-title {
           font-family: 'Russo One', sans-serif;
-          font-size: 100px;
+          font-size: clamp(48px, 7vw, 130px);
           font-weight: 400;
-          line-height: normal;
+          line-height: 100%;
+          color: #F1F5F9;
+          margin: 0 0 clamp(32px, 4vw, 70px) 0;
+          text-align: center;
+        }
+
+        .about-text {
+          font-family: 'Roboto Mono', ui-monospace, monospace;
+          font-size: clamp(14px, 1.15vw, 20px);
+          line-height: 175%;
+          color: #F1F5F9;
+          display: flex;
+          flex-direction: column;
+          gap: clamp(20px, 2.5vw, 45px);
+        }
+
+        .about-text section h2 {
+          font-size: clamp(18px, 1.5vw, 28px);
+          font-weight: 600;
+          color: #66C48A;
+          margin: 0 0 clamp(8px, 0.8vw, 14px) 0;
+        }
+
+        .about-text section p {
+          margin: 0;
+        }
+
+        .image-section {
+          flex-shrink: 0;
+          display: flex;
+          align-items: flex-start;
+          padding-top: clamp(16px, 2vw, 40px);
+        }
+
+        .image-cluster {
+          position: relative;
+          width: clamp(280px, 28vw, 500px);
+          height: clamp(400px, 40vw, 700px);
+        }
+
+        .image-card {
+          position: absolute;
+          transition: transform 0.5s ease;
+        }
+
+        .image-card:hover {
+          transform: translateY(-10px);
+        }
+
+        .image-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: clamp(12px, 1.2vw, 24px);
+        }
+
+        .image-shadow {
+          position: absolute;
+          inset: 0;
+          border-radius: clamp(14px, 1.4vw, 28px);
+          background: rgba(0, 0, 0, 0.75);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+          z-index: -1;
+          transform: translate(clamp(6px, 0.6vw, 12px), clamp(6px, 0.6vw, 12px));
+        }
+
+        .image-card-1 {
+          top: 0;
+          left: 0;
+          width: clamp(220px, 22vw, 400px);
+          height: clamp(260px, 26vw, 460px);
+          z-index: 10;
+        }
+
+        .image-card-2 {
+          top: clamp(120px, 12vw, 220px);
+          left: clamp(80px, 9vw, 160px);
+          width: clamp(180px, 18vw, 320px);
+          height: clamp(220px, 22vw, 380px);
+          z-index: 20;
+        }
+
+        /* Tablet and below - stack vertically */
+        @media (max-width: 1024px) {
+          .about-content {
+            flex-direction: column;
+            gap: 50px;
+          }
+
+          .about-title {
+            font-size: clamp(40px, 10vw, 80px);
+            margin-bottom: 30px;
+          }
+
+          .about-text {
+            font-size: clamp(14px, 2.5vw, 18px);
+            gap: 24px;
+          }
+
+          .about-text section h2 {
+            font-size: clamp(16px, 3.5vw, 24px);
+            margin-bottom: 10px;
+          }
+
+          .image-section {
+            width: 100%;
+            justify-content: center;
+            padding-top: 0;
+          }
+
+          .image-cluster {
+            width: min(500px, 85vw);
+            height: min(650px, 110vw);
+          }
+
+          .image-card-1 {
+            width: min(380px, 65vw);
+            height: min(450px, 75vw);
+          }
+
+          .image-card-2 {
+            top: min(250px, 42vw);
+            left: min(150px, 28vw);
+            width: min(320px, 55vw);
+            height: min(380px, 62vw);
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+          .about-page {
+            padding: 100px 20px 0;
+          }
+
+          .about-title {
+            font-size: 13vw;
+          }
+
+          .about-text {
+            font-size: 15px;
+            gap: 20px;
+          }
+
+          .about-text section h2 {
+            font-size: 18px;
+          }
+        }
+
+        /* Footer */
+        .page-footer {
+          position: relative;
+          width: 100vw;
+          margin-left: calc(-1 * clamp(24px, 5vw, 80px));
+          background: rgba(0, 0, 0, 0.85);
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 8vw, 145px);
+          flex-wrap: wrap;
+          gap: clamp(0.5rem, 1vh, 1rem);
+          box-sizing: border-box;
+          margin-top: clamp(3rem, 5vh, 5rem);
+        }
+
+        .footer-meetings,
+        .footer-location {
+          font-family: 'Roboto Mono', monospace;
+          font-size: clamp(12px, 1.5vw, 24px);
+          font-weight: 300;
           color: #F1F5F9;
           margin: 0;
         }
 
-        .text-content {
-          position: absolute;
-          left: 278px;
-          top: 377px;
-          width: 642px;
-          height: 441px;
-          font-family: 'Roboto Mono', monospace;
-          font-size: 16px;
-          font-weight: 400;
-          line-height: normal;
-          color: #F1F5F9;
-        }
-
-        .text-section {
-          margin: 0 0 4px 0;
-        }
-
-        .text-paragraph {
-          margin: 0 0 4px 0;
-        }
-
-        /* Top Polaroid Photo */
-        .photo-polaroid {
-          position: absolute;
-          left: 1036px;
-          top: 199px;
-          width: 413px;
-          height: 531px;
-          -webkit-mask-image: url(${maskPolaroid});
-          mask-image: url(${maskPolaroid});
-          -webkit-mask-size: contain;
-          mask-size: contain;
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-          -webkit-mask-position: center;
-          mask-position: center;
-        }
-
-        .polaroid-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        /* Dark Rounded Rectangle Overlay */
-        .dark-overlay {
-          position: absolute;
-          left: 1309px;
-          top: 397px;
-          width: 472px;
-          height: 588px;
-          background: #060612;
-          border-radius: 62px;
-          -webkit-mask-image: url(${maskRounded});
-          mask-image: url(${maskRounded});
-          -webkit-mask-size: 472px 644px;
-          mask-size: 472px 644px;
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-          -webkit-mask-position: 0px -35px;
-          mask-position: 0px -35px;
-        }
-
-        /* Bottom Photo with Rounded Mask */
-        .photo-bottom {
-          position: absolute;
-          left: 1221px;
-          top: 472px;
-          width: 592px;
-          height: 413px;
-          -webkit-mask-image: url(${maskRounded});
-          mask-image: url(${maskRounded});
-          -webkit-mask-size: 472px 644px;
-          mask-size: 472px 644px;
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-          -webkit-mask-position: 88px -110px;
-          mask-position: 88px -110px;
-        }
-
-        .bottom-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        /* Responsive */
-        @media (max-width: 1920px) {
-          .about-page {
-            overflow-x: hidden;
-          }
-
-          .background {
-            width: 100%;
-            min-width: 1920px;
+        @media (max-width: 950px) {
+          .page-footer {
+            flex-direction: column;
+            text-align: center;
+            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
           }
         }
 
-        @media (max-width: 1400px) {
-          .page-title {
-            font-size: 80px;
-            width: 450px;
-            left: 150px;
-          }
-
-          .text-content {
-            left: 150px;
-            width: 500px;
-            font-size: 14px;
-          }
-
-          .photo-polaroid {
-            left: 850px;
-            transform: scale(0.85);
-          }
-
-          .dark-overlay {
-            left: 1050px;
-            transform: scale(0.85);
-          }
-
-          .photo-bottom {
-            left: 980px;
-            transform: scale(0.85);
-          }
-        }
-
-        @media (max-width: 1024px) {
-          .page-title {
-            position: relative;
-            left: auto;
-            top: auto;
-            font-size: 64px;
-            width: 360px;
-            margin: 100px auto 40px;
-          }
-
-          .text-content {
-            position: relative;
-            left: auto;
-            top: auto;
-            width: 90%;
-            max-width: 600px;
-            margin: 0 auto 50px;
-            font-size: 14px;
-          }
-
-          .photo-polaroid,
-          .dark-overlay,
-          .photo-bottom {
-            position: relative;
-            left: 50%;
-            top: auto;
-            transform: translateX(-50%) scale(0.7);
-            margin: 20px auto;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .page-title {
-            font-size: 48px;
-            width: 280px;
-          }
-
-          .text-content {
-            font-size: 13px;
-          }
-
-          .photo-polaroid,
-          .dark-overlay,
-          .photo-bottom {
-            transform: translateX(-50%) scale(0.5);
+        @media (max-width: 640px) {
+          .page-footer {
+            margin-left: -20px;
           }
         }
       `}</style>
-    </div>
-  );
+    </main>
+  )
 }
 
-export default About;
+export default About
