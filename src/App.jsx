@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Team from "./pages/Team";
@@ -7,6 +7,9 @@ import ProjectsPage from "./components/Home/ProjectsPage";
 import Navbar from "./components/Navbar";
 import PageTransition from "./components/PageTransition";
 import AnimatedBackground from "./components/AnimatedBackground";
+
+import { useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 
 function AnimatedRoutes() {
   const location = useLocation();
