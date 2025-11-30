@@ -155,11 +155,11 @@ function Announcements() {
           border: none;
           cursor: pointer;
           padding: 0;
-          transition: opacity 0.2s ease;
+          transition: color 0.2s ease;
         }
 
         .read-all-button:hover {
-          opacity: 0.8;
+          color: #45AF7F;
         }
       `}</style>
     </div>
