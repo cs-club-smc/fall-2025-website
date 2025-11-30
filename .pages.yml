@@ -1,0 +1,35 @@
+media: public/media
+content:
+  - name: announcements
+    label: Announcements
+    type: collection
+    path: src/_data/announcements
+    fields:
+      - name: title
+        label: Announcement Title
+        type: string
+        required: true
+      - name: author
+        label: Author Name
+        type: string
+        required: true
+      - name: date
+        label: Publication Date
+        type: date
+        required: true
+      - name: message
+        label: Announcement Message
+        type: rich-text
+        required: true
+      - name: link
+        label: External Link (optional)
+        type: string
+        required: false
+      - name: images
+        label: Images
+        type: list
+        fields:
+          - name: image
+            label: Image
+            type: image
+        required: false

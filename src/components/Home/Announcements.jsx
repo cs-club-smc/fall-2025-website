@@ -1,38 +1,35 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnnouncmentPopUp from '../AnnouncmentPopUp';
+import { getAnnouncements } from '../../utils/getAnnouncement';
 
 /**
  * Announcements Section - Flexbox layout with fluid scaling
  * Now wrapped by parent for scroll animations
+ * Loads announcements from Pages CMS
  */
 function Announcements() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [announcements, setAnnouncements] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const announcements = [
-    {
-      
-      id: 1,
-      author: 'Evan Ly',
-      date: 'December 18th, 2024 8:44 P.M',
-      title: 'Announcment Name',
-      message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ",
-    },
-    {
-      id: 2,
-      author: 'Evan Ly',
-      date: 'December 18th, 2024 8:44 P.M',
-      title: 'Announcment Name 1',
-      message: "Hi I'm just a text box here, you can add any text long or short here. Text here are just announcements for the SMC CS Club.",
-    },
-    {
-      id: 3,
-      author: 'Evan Ly',
-      date: 'December 18th, 2024 8:44 P.M',
-      title: 'Announcment Name',
-      message: "Hi I'm just a text box here, you can add any text long or short here. Text here are just announcements for the SMC CS Club.",
+  // Load announcements from Pages CMS
+  useEffect(() => {
+    async function loadAnnouncements() {
+      try {
+        setIsLoading(true);
+        const data = await getAnnouncements();
+        setAnnouncements(data);
+      } catch (error) {
+        console.error('Failed to load announcements:', error);
+        setAnnouncements([]);
+      } finally {
+        setIsLoading(false);
+      }
     }
-  ];
+    
+    loadAnnouncements();
+  }, []);
 
   // Handle ESC key to close popup
   useEffect(() => {
@@ -71,32 +68,37 @@ function Announcements() {
 
       {/* Announcement Cards */}
       <div className="cards-container">
-        {announcements.map((announcement, index) => (
-          <>
-            <p style={{ fontFamily: 'Roboto Mono', color: '#AAA', margin: '0' }}>{announcement.date}</p>
-            <h3 style={{ fontSize: "20px", textAlign: `${index % 3 == 1 ? 'right' : 'left'}`, padding: '0px 40px 10px 40px', margin: '0'}}>{announcement.author}</h3>
-            <motion.div
-              key={announcement.id}
-              className="card-bubble"
-              style={{ backgroundColor: `${colorBank[index % 3].foreground}`, margin: '0px 0px 40px 0px' }}
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                delay: index * 0.1,
-                duration: 0.5,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              whileHover={{
-                scale: 1.02,
-                x: 10,
-                transition: { duration: 0.2 }
-              }}
-            >
-              <h2 className="card-title" style={ index % 3 == 1 ? { textAlign: "right" } : { textAlign: 'left' }}>{announcement.title}</h2>
-              <p className="card-message">{announcement.message}</p>
-            </motion.div>
-          </>
-        ))}
+        {isLoading ? (
+          <p style={{ fontFamily: 'Roboto Mono', color: '#AAA', textAlign: 'center' }}>Loading announcements...</p>
+        ) : announcements.length === 0 ? (
+          <p style={{ fontFamily: 'Roboto Mono', color: '#AAA', textAlign: 'center' }}>No announcements available.</p>
+        ) : (
+          announcements.map((announcement, index) => (
+            <div key={announcement.id}>
+              <p style={{ fontFamily: 'Roboto Mono', color: '#AAA', margin: '0' }}>{announcement.date}</p>
+              <h3 style={{ fontSize: "20px", textAlign: `${index % 3 == 1 ? 'right' : 'left'}`, padding: '0px 40px 10px 40px', margin: '0'}}>{announcement.author}</h3>
+              <motion.div
+                className="card-bubble"
+                style={{ backgroundColor: `${colorBank[index % 3].foreground}`, margin: '0px 0px 40px 0px' }}
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  delay: index * 0.1,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{
+                  scale: 1.02,
+                  x: 10,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <h2 className="card-title" style={ index % 3 == 1 ? { textAlign: "right" } : { textAlign: 'left' }}>{announcement.title}</h2>
+                <p className="card-message" dangerouslySetInnerHTML={{ __html: announcement.message }}></p>
+              </motion.div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Read All Button */}
@@ -109,6 +111,7 @@ function Announcements() {
         <button 
           className="read-all-button"
           onClick={() => setIsPopupOpen(true)}
+          disabled={announcements.length === 0 || isLoading}
         >
           Read All &gt;
         </button>

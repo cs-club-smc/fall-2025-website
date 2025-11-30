@@ -24,7 +24,10 @@ const AnnouncmentModule = ({title, link, author, date, description, images}) => 
         <span className="meta-date">{date}</span>
       </div>
       
-      <p className="module-description">{description}</p>
+      <div 
+        className="module-description" 
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
       
       <div className="module-images">
         {Array.from({ length: 3 }).map((_, index) => {
