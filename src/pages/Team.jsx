@@ -5,6 +5,7 @@ import seanPhoto from '../assets/team/photos/sean.jpg';
 import akuaPhoto from '../assets/team/photos/akua.jpg';
 import kathleenPhoto from '../assets/team/photos/kathleen.jpg';
 import ryonPhoto from '../assets/team/photos/ryon.jpg';
+import aidanaPhoto from '../assets/team/photos/aidana.jpg';
 
 const boardMembers = [
   { photo: evanPhoto, role: "Co-President" },
@@ -13,6 +14,7 @@ const boardMembers = [
   { photo: akuaPhoto, role: "Publicity Officer" },
   { photo: kathleenPhoto, role: "Secretary" },
   { photo: ryonPhoto, role: "Treasurer" },
+  { photo: aidanaPhoto, role: "ICC Delegate" },
 ];
 
 /**

@@ -1,4 +1,5 @@
 import PhotoGallery from '../components/PhotoGallery'
+import line3 from '../assets/team/line-3.svg'
 
 function About() {
   return (
@@ -46,6 +47,11 @@ function About() {
           </div>
         </div>
 
+        {/* Section Divider */}
+        <div className="section-divider">
+          <img src={line3} alt="" />
+        </div>
+
         {/* Photo Gallery */}
         <div className="gallery-section">
           <h2 className="gallery-title">GALLERY</h2>
@@ -85,6 +91,18 @@ function About() {
 
         .gallery-section {
           width: 100%;
+        }
+
+        .section-divider {
+          width: clamp(300px, 80vw, 1200px);
+          height: 3px;
+          margin: 0 auto;
+        }
+
+        .section-divider img {
+          width: 100%;
+          height: 100%;
+          display: block;
         }
 
         .gallery-title {
