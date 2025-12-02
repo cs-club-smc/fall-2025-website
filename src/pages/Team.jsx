@@ -1,13 +1,18 @@
 import line3 from '../assets/team/line-3.svg';
+import evanPhoto from '../assets/team/photos/evan.jpg';
+import kaiPhoto from '../assets/team/photos/kai.jpg';
+import seanPhoto from '../assets/team/photos/sean.jpg';
+import akuaPhoto from '../assets/team/photos/akua.jpg';
+import kathleenPhoto from '../assets/team/photos/kathleen.jpg';
+import ryonPhoto from '../assets/team/photos/ryon.jpg';
 
 const boardMembers = [
-  { name: "Evan Ly Cheang", role: "Co-President" },
-  { name: "Kai Shimoda", role: "Co-President" },
-  { name: "Sean Esla", role: "Vice President" },
-  { name: "Aidana Kudaibergenova", role: "ICC Delegate" },
-  { name: "Akua Baryeh", role: "Publicity Officer" },
-  { name: "Kathleen Gantasia", role: "Secretary" },
-  { name: "Ryon Chan", role: "Treasurer" },
+  { photo: evanPhoto, role: "Co-President" },
+  { photo: kaiPhoto, role: "Co-President" },
+  { photo: seanPhoto, role: "Vice President" },
+  { photo: akuaPhoto, role: "Publicity Officer" },
+  { photo: kathleenPhoto, role: "Secretary" },
+  { photo: ryonPhoto, role: "Treasurer" },
 ];
 
 /**
@@ -29,13 +34,12 @@ function Team() {
       <div className="cards-grid">
         {boardMembers.map((member, index) => (
           <div
-            key={member.name}
+            key={member.role + index}
             className="card"
             style={{ animationDelay: `${index * 0.15}s` }}
           >
-            <div className="card-bg" />
-            <div className="name-area">
-              <p className="member-name">{member.name}</p>
+            <div className="card-bg">
+              <img src={member.photo} alt={member.role} className="member-photo" />
             </div>
             <p className="role-title">{member.role}</p>
           </div>
@@ -164,32 +168,18 @@ function Team() {
         .card-bg {
           width: 100%;
           aspect-ratio: 367 / 533;
-          background: #F1F5F9;
           border: 5px solid #66C48A;
           border-radius: 12px;
+          overflow: hidden;
           animation: borderCycle 6s ease-in-out infinite;
         }
 
-        .name-area {
-          position: absolute;
-          left: 4.6%;
-          top: 5.25%;
-          width: 90.7%;
-          height: 76.4%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .member-name {
-          font-family: 'Russo One', sans-serif;
-          font-size: clamp(1.5rem, 2vw, 2rem);
-          font-weight: 400;
-          line-height: 1.3;
-          text-align: center;
-          color: #000000;
-          margin: 0;
-          padding: 1rem;
+        .member-photo {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center top;
+          display: block;
         }
 
         .role-title {
@@ -197,13 +187,15 @@ function Team() {
           left: 50%;
           transform: translateX(-50%);
           bottom: 5.25%;
-          width: 78.7%;
           font-family: 'Russo One', sans-serif;
           font-size: clamp(1.25rem, 1.5vw, 1.5rem);
           font-weight: 400;
           line-height: normal;
           text-align: center;
-          color: #000000;
+          color: #F1F5F9;
+          background: rgba(0, 0, 0, 0.7);
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
           margin: 0;
         }
 
