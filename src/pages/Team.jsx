@@ -8,13 +8,13 @@ import ryonPhoto from '../assets/team/photos/ryon.jpg';
 import aidanaPhoto from '../assets/team/photos/aidana.jpg';
 
 const boardMembers = [
-  { photo: evanPhoto, role: "Co-President" },
-  { photo: kaiPhoto, role: "Co-President" },
-  { photo: seanPhoto, role: "Vice President" },
-  { photo: akuaPhoto, role: "Publicity Officer" },
-  { photo: kathleenPhoto, role: "Secretary" },
-  { photo: ryonPhoto, role: "Treasurer" },
-  { photo: aidanaPhoto, role: "ICC Delegate" },
+  { photo: evanPhoto, name: "Evan", role: "Co-President" },
+  { photo: kaiPhoto, name: "Kai", role: "Co-President" },
+  { photo: seanPhoto, name: "Sean", role: "Vice President" },
+  { photo: akuaPhoto, name: "Akua", role: "Publicity Officer" },
+  { photo: kathleenPhoto, name: "Kathleen", role: "Secretary" },
+  { photo: ryonPhoto, name: "Ryon", role: "Treasurer" },
+  { photo: aidanaPhoto, name: "Aidana", role: "ICC Delegate" },
 ];
 
 /**
@@ -40,8 +40,9 @@ function Team() {
             className="card"
             style={{ animationDelay: `${index * 0.15}s` }}
           >
+            <p className="member-name">{member.name}</p>
             <div className="card-bg">
-              <img src={member.photo} alt={member.role} className="member-photo" />
+              <img src={member.photo} alt={member.name} className="member-photo" />
             </div>
             <p className="role-title">{member.role}</p>
           </div>
@@ -184,6 +185,26 @@ function Team() {
           display: block;
         }
 
+        .member-name {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 5.25%;
+          z-index: 10;
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+          font-weight: 400;
+          line-height: normal;
+          text-align: center;
+          color: #F1F5F9;
+          background: rgba(0, 0, 0, 0.7);
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
+          margin: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+
         .role-title {
           position: absolute;
           left: 50%;
@@ -204,6 +225,7 @@ function Team() {
           transition: opacity 0.3s ease;
         }
 
+        .card:hover .member-name,
         .card:hover .role-title {
           opacity: 0.2;
         }
@@ -254,6 +276,7 @@ function Team() {
             margin-bottom: clamp(1.5rem, 3vh, 3rem);
           }
 
+          .member-name,
           .role-title {
             font-size: clamp(1rem, 4vw, 1.25rem);
           }
