@@ -187,6 +187,7 @@ function Team() {
           left: 50%;
           transform: translateX(-50%);
           bottom: 5.25%;
+          z-index: 10;
           font-family: 'Russo One', sans-serif;
           font-size: clamp(1.25rem, 1.5vw, 1.5rem);
           font-weight: 400;
@@ -197,6 +198,12 @@ function Team() {
           padding: 0.5rem 1rem;
           border-radius: 6px;
           margin: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+
+        .card:hover .role-title {
+          opacity: 0.2;
         }
 
         /* Bottom Line */
