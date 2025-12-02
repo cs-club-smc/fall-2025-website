@@ -1,11 +1,10 @@
-import meeting from '../assets/About/meeting.png'
-import logo from '../assets/About/logo.jpg'
+import PhotoGallery from '../components/PhotoGallery'
 
 function About() {
   return (
     <main className="about-page">
       <div className="about-content">
-        {/* Left side - Text content */}
+        {/* Text content */}
         <div className="text-section">
           <h1 className="about-title">ABOUT US</h1>
 
@@ -41,29 +40,16 @@ function About() {
 
             <section>
               <h2>Advisors:</h2>
-              <p>Prof. John Doe and Dr. Jane Smith</p>
+              <p>Professors Koda Kol and Nathan Greenfield</p>
             </section>
 
-            <section>
-              <h2>Affiliated Organizations:</h2>
-              <p>Santa Monica College Computer Science Department, ACM</p>
-            </section>
           </div>
         </div>
 
-        {/* Right side - Image cluster */}
-        <div className="image-section">
-          <div className="image-cluster">
-            <div className="image-card image-card-1">
-              <div className="image-shadow" />
-              <img src={meeting} alt="CS Club meeting" />
-            </div>
-
-            <div className="image-card image-card-2">
-              <div className="image-shadow" />
-              <img src={logo} alt="CS Club logo" />
-            </div>
-          </div>
+        {/* Photo Gallery */}
+        <div className="gallery-section">
+          <h2 className="gallery-title">GALLERY</h2>
+          <PhotoGallery />
         </div>
       </div>
 
@@ -86,16 +72,29 @@ function About() {
         .about-content {
           flex: 1;
           display: flex;
-          flex-direction: row;
-          gap: clamp(40px, 5vw, 100px);
-          align-items: flex-start;
-          max-width: 1800px;
+          flex-direction: column;
+          gap: clamp(50px, 6vw, 100px);
+          max-width: 1400px;
           margin: 0 auto;
+          width: 100%;
         }
 
         .text-section {
-          flex: 1;
-          min-width: 0;
+          width: 100%;
+        }
+
+        .gallery-section {
+          width: 100%;
+        }
+
+        .gallery-title {
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(36px, 5vw, 80px);
+          font-weight: 400;
+          line-height: 100%;
+          color: #F1F5F9;
+          margin: 0 0 clamp(24px, 3vw, 50px) 0;
+          text-align: center;
         }
 
         .about-title {
@@ -129,68 +128,8 @@ function About() {
           margin: 0;
         }
 
-        .image-section {
-          flex-shrink: 0;
-          display: flex;
-          align-items: flex-start;
-          padding-top: clamp(16px, 2vw, 40px);
-        }
-
-        .image-cluster {
-          position: relative;
-          width: clamp(280px, 28vw, 500px);
-          height: clamp(400px, 40vw, 700px);
-        }
-
-        .image-card {
-          position: absolute;
-          transition: transform 0.5s ease;
-        }
-
-        .image-card:hover {
-          transform: translateY(-10px);
-        }
-
-        .image-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: clamp(12px, 1.2vw, 24px);
-        }
-
-        .image-shadow {
-          position: absolute;
-          inset: 0;
-          border-radius: clamp(14px, 1.4vw, 28px);
-          background: rgba(0, 0, 0, 0.75);
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-          z-index: -1;
-          transform: translate(clamp(6px, 0.6vw, 12px), clamp(6px, 0.6vw, 12px));
-        }
-
-        .image-card-1 {
-          top: 0;
-          left: 0;
-          width: clamp(220px, 22vw, 400px);
-          height: clamp(260px, 26vw, 460px);
-          z-index: 10;
-        }
-
-        .image-card-2 {
-          top: clamp(120px, 12vw, 220px);
-          left: clamp(80px, 9vw, 160px);
-          width: clamp(180px, 18vw, 320px);
-          height: clamp(220px, 22vw, 380px);
-          z-index: 20;
-        }
-
-        /* Tablet and below - stack vertically */
+        /* Tablet and below */
         @media (max-width: 1024px) {
-          .about-content {
-            flex-direction: column;
-            gap: 50px;
-          }
-
           .about-title {
             font-size: clamp(40px, 10vw, 80px);
             margin-bottom: 30px;
@@ -206,27 +145,8 @@ function About() {
             margin-bottom: 10px;
           }
 
-          .image-section {
-            width: 100%;
-            justify-content: center;
-            padding-top: 0;
-          }
-
-          .image-cluster {
-            width: min(500px, 85vw);
-            height: min(650px, 110vw);
-          }
-
-          .image-card-1 {
-            width: min(380px, 65vw);
-            height: min(450px, 75vw);
-          }
-
-          .image-card-2 {
-            top: min(250px, 42vw);
-            left: min(150px, 28vw);
-            width: min(320px, 55vw);
-            height: min(380px, 62vw);
+          .gallery-title {
+            font-size: clamp(32px, 8vw, 60px);
           }
         }
 
