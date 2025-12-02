@@ -37,55 +37,63 @@ function Announcements() {
 
   return (
     <div className="announcements-section">
-      {/* Title */}
-      <motion.h1
-        className="section-title"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        ANNOUNCEMENTS
-      </motion.h1>
+      {/* Blurred content wrapper */}
+      <div className="content-blur">
+        {/* Title */}
+        <motion.h1
+          className="section-title"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          ANNOUNCEMENTS
+        </motion.h1>
 
-      {/* Announcement Cards */}
-      <div className="cards-container">
-        {announcements.map((announcement, index) => (
-          <>
-            <p style={{ fontFamily: 'Roboto Mono', color: '#AAA', margin: '0' }}>{announcement.date}</p>
-            <h3 style={{ fontSize: "20px", textAlign: `${index % 3 == 1 ? 'right' : 'left'}`, padding: '0px 40px 10px 40px', margin: '0'}}>{announcement.author}</h3>
-            <motion.div
-              key={announcement.id}
-              className="card-bubble"
-              style={{ backgroundColor: `${colorBank[index % 3].foreground}`, margin: '0px 0px 40px 0px' }}
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                delay: index * 0.1,
-                duration: 0.5,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              whileHover={{
-                scale: 1.02,
-                x: 10,
-                transition: { duration: 0.2 }
-              }}
-            >
-              <h2 className="card-title" style={{ textAlign: 'left' }}>{announcement.title}</h2>
-              <p className="card-message">{announcement.message}</p>
-            </motion.div>
-          </>
-        ))}
+        {/* Announcement Cards */}
+        <div className="cards-container">
+          {announcements.map((announcement, index) => (
+            <>
+              <p style={{ fontFamily: 'Roboto Mono', color: '#AAA', margin: '0' }}>{announcement.date}</p>
+              <h3 style={{ fontSize: "20px", textAlign: `${index % 3 == 1 ? 'right' : 'left'}`, padding: '0px 40px 10px 40px', margin: '0'}}>{announcement.author}</h3>
+              <motion.div
+                key={announcement.id}
+                className="card-bubble"
+                style={{ backgroundColor: `${colorBank[index % 3].foreground}`, margin: '0px 0px 40px 0px' }}
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  delay: index * 0.1,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{
+                  scale: 1.02,
+                  x: 10,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <h2 className="card-title" style={{ textAlign: 'left' }}>{announcement.title}</h2>
+                <p className="card-message">{announcement.message}</p>
+              </motion.div>
+            </>
+          ))}
+        </div>
+
+        {/* Read All Button */}
+        <motion.div
+          className="read-all-container"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <button className="read-all-button">Read All &gt;</button>
+        </motion.div>
       </div>
 
-      {/* Read All Button */}
-      <motion.div
-        className="read-all-container"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-      >
-        <button className="read-all-button">Read All &gt;</button>
-      </motion.div>
+      {/* Coming soon overlay */}
+      <div className="coming-soon-overlay">
+        <h2 className="coming-soon-text">Coming Spring 2026</h2>
+      </div>
 
       <style jsx>{`
         .announcements-section {
@@ -97,6 +105,34 @@ function Announcements() {
           justify-content: center;
           padding: clamp(2rem, 5vh, 4rem) clamp(1rem, 5vw, 3rem);
           box-sizing: border-box;
+        }
+
+        .content-blur {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          filter: blur(8px);
+          opacity: 0.5;
+          pointer-events: none;
+        }
+
+        .coming-soon-overlay {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+        }
+
+        .coming-soon-text {
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(32px, 6vw, 96px);
+          color: #F1F5F9;
+          text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          text-align: center;
+          margin: 0;
         }
 
         .section-title {

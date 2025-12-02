@@ -8,65 +8,73 @@ import { Link } from "react-router-dom";
 function Projects() {
   return (
     <div className="projects-section">
-      <div className="projects-layout">
-        {/* Projects Blocks - decorative shapes with stagger */}
-        <div className="blocks-container">
-          <div className="blocks-inner">
-            {[1, 2, 3, 4, 5].map((num, index) => (
-              <motion.div
-                key={num}
-                className={`block block-${num}`}
-                initial={{ opacity: 0, scale: 0, rotate: -10 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{
-                  delay: index * 0.08,
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                whileHover={{
-                  scale: 1.1,
-                  rotate: num % 2 === 0 ? 5 : -5,
-                  transition: { duration: 0.3 }
-                }}
-              />
-            ))}
+      {/* Blurred content wrapper */}
+      <div className="content-blur">
+        <div className="projects-layout">
+          {/* Projects Blocks - decorative shapes with stagger */}
+          <div className="blocks-container">
+            <div className="blocks-inner">
+              {[1, 2, 3, 4, 5].map((num, index) => (
+                <motion.div
+                  key={num}
+                  className={`block block-${num}`}
+                  initial={{ opacity: 0, scale: 0, rotate: -10 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{
+                    delay: index * 0.08,
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  whileHover={{
+                    scale: 1.1,
+                    rotate: num % 2 === 0 ? 5 : -5,
+                    transition: { duration: 0.3 }
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Description */}
+          <div className="description-container">
+            <motion.h1
+              className="projects-title"
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              PROJECTS
+            </motion.h1>
+            <motion.p
+              className="projects-description"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <Link to="/ProjectsPage">
+                <motion.button
+                  className="see-projects-button"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  See Projects
+                </motion.button>
+              </Link>
+            </motion.div>
           </div>
         </div>
+      </div>
 
-        {/* Description */}
-        <div className="description-container">
-          <motion.h1
-            className="projects-title"
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            PROJECTS
-          </motion.h1>
-          <motion.p
-            className="projects-description"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            <Link to="/ProjectsPage">
-              <motion.button
-                className="see-projects-button"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                See Projects
-              </motion.button>
-            </Link>
-          </motion.div>
-        </div>
+      {/* Coming soon overlay */}
+      <div className="coming-soon-overlay">
+        <h2 className="coming-soon-text">Coming Spring 2026</h2>
       </div>
 
       <style jsx>{`
@@ -78,6 +86,34 @@ function Projects() {
           justify-content: center;
           padding: clamp(2rem, 5vh, 4rem) clamp(1rem, 5vw, 3rem);
           box-sizing: border-box;
+        }
+
+        .content-blur {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          filter: blur(8px);
+          opacity: 0.5;
+          pointer-events: none;
+        }
+
+        .coming-soon-overlay {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+        }
+
+        .coming-soon-text {
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(32px, 6vw, 96px);
+          color: #F1F5F9;
+          text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          text-align: center;
+          margin: 0;
         }
 
         .projects-layout {
