@@ -76,12 +76,15 @@ function About() {
       <style jsx>{`
         .about-page {
           min-height: 100vh;
+          display: flex;
+          flex-direction: column;
           background: transparent;
           padding: clamp(100px, 8vw, 140px) clamp(24px, 5vw, 80px) 0;
           overflow-x: hidden;
         }
 
         .about-content {
+          flex: 1;
           display: flex;
           flex-direction: row;
           gap: clamp(40px, 5vw, 100px);
