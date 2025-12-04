@@ -20,10 +20,10 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-        <Route path="/team" element={<PageTransition><Team /></PageTransition>} />
-        <Route path="/ProjectsPage" element={<PageTransition><ProjectsPage /></PageTransition>} />
+        <Route path="/fall-2025-website/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/fall-2025-website/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/fall-2025-website/team" element={<PageTransition><Team /></PageTransition>} />
+        <Route path="/fall-2025-website/ProjectsPage" element={<PageTransition><ProjectsPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
