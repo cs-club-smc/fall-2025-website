@@ -6,21 +6,21 @@ function Navbar() {
     const location = useLocation();
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/10">
-            <div className="w-full px-12 py-6 flex items-center">
+        <nav className="top-0 right-0 left-0 z-50 fixed bg-black/30 backdrop-blur-md border-white/10 border-b">
+            <div className="flex items-center px-12 py-6 w-full">
                 {/* Logo - Left side */}
                 <div className="flex-1">
-                    <Link to="/" className="flex items-center">
-                        <img src={logo} alt="CS Club Logo" className="h-20 w-auto" />
+                    <Link to="/fall-2025-website/" className="flex items-center">
+                        <img src={logo} alt="CS Club Logo" className="w-auto h-20" />
                     </Link>
                 </div>
 
                 {/* Navigation Links - Centered */}
-                <div className="flex-none flex justify-center gap-12 text-2xl" style={{ fontFamily: "'Russo One', sans-serif" }}>
+                <div className="flex flex-none justify-center gap-12 text-2xl" style={{ fontFamily: "'Russo One', sans-serif" }}>
                     <Link
                         to="/"
                         className={`transition-colors ${
-                            location.pathname === '/'
+                            location.pathname === '/fall-2025-website/'
                                 ? 'text-teal-400'
                                 : 'text-white hover:text-teal-400'
                         }`}
@@ -30,7 +30,7 @@ function Navbar() {
                     <Link
                         to="/about"
                         className={`transition-colors ${
-                            location.pathname === '/about'
+                            location.pathname === '/fall-2025-website/about'
                                 ? 'text-teal-400'
                                 : 'text-white hover:text-teal-400'
                         }`}
@@ -40,7 +40,7 @@ function Navbar() {
                     <Link
                         to="/team"
                         className={`transition-colors ${
-                            location.pathname === '/team'
+                            location.pathname === '/fall-2025-website/team'
                                 ? 'text-teal-400'
                                 : 'text-white hover:text-teal-400'
                         }`}
@@ -50,7 +50,7 @@ function Navbar() {
                 </div>
 
                 {/* Right side - Join Now Button */}
-                <div className="flex-1 flex justify-end" style={{ marginRight: '24px' }}>
+                <div className="flex flex-1 justify-end" style={{ marginRight: '24px' }}>
                     <JoinNowButton />
                 </div>
             </div>
