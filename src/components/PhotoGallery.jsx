@@ -1,5 +1,5 @@
-import { MasonryPhotoAlbum } from "react-photo-album";
-import "react-photo-album/masonry.css";
+import { useState } from 'react';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 
 // Import images
 import clubawareness1 from '../assets/Gallery/clubawareness1.jpg';
@@ -43,63 +43,191 @@ const categories = [
   }
 ];
 
+const ease = [0.25, 0.46, 0.45, 0.94];
+
 // Generate consistent rotation for each photo based on index
 const getRotation = (index) => {
   const rotations = [-3, 2, -2, 3, -1, 1, -2.5, 2.5];
   return rotations[index % rotations.length];
 };
 
+// Staggered container variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+// Individual photo variants
+const photoVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.25,
+      ease,
+    },
+  },
+};
+
 function PhotoGallery() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeCategory = categories[activeIndex];
+
   return (
     <div className="photo-gallery">
-      {categories.map((category, catIndex) => (
-        <div key={category.name} className="gallery-category">
-          <h3 className="category-title">{category.name}</h3>
-          <MasonryPhotoAlbum
-            photos={category.photos}
-            columns={(containerWidth) => {
-              if (containerWidth < 350) return 1;
-              if (containerWidth < 600) return 2;
-              return 3;
-            }}
-            spacing={16}
-            render={{
-              image: (props, { photo, index }) => (
-                <div
-                  className="polaroid"
-                  style={{ '--rotation': `${getRotation(catIndex * 10 + index)}deg` }}
-                >
-                  <img {...props} alt={`${category.name} photo ${index + 1}`} />
-                  <div className="polaroid-bottom" />
-                </div>
-              ),
-            }}
-          />
+      {/* Tab buttons */}
+      <LayoutGroup>
+        <div className="gallery-tabs">
+          {categories.map((cat, i) => (
+            <button
+              key={cat.name}
+              className={`gallery-tab ${i === activeIndex ? 'active' : ''}`}
+              onClick={() => setActiveIndex(i)}
+            >
+              {i === activeIndex && (
+                <motion.div
+                  className="tab-indicator"
+                  layoutId="activeTab"
+                  transition={{ duration: 0.3, ease }}
+                />
+              )}
+              <span className="tab-label">{cat.name}</span>
+            </button>
+          ))}
         </div>
-      ))}
+      </LayoutGroup>
+
+      {/* Photo stage */}
+      <div className="photo-stage">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            className={`photo-grid photos-${activeCategory.photos.length}`}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {activeCategory.photos.map((photo, index) => (
+              <motion.div
+                key={`${activeCategory.name}-${index}`}
+                className="polaroid"
+                style={{ '--rotation': `${getRotation(activeIndex * 10 + index)}deg` }}
+                variants={photoVariants}
+              >
+                <img
+                  src={photo.src}
+                  alt={`${activeCategory.name} photo ${index + 1}`}
+                  style={{
+                    aspectRatio: `${photo.width} / ${photo.height}`,
+                  }}
+                />
+                <div className="polaroid-bottom" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       <style jsx>{`
         .photo-gallery {
           display: flex;
           flex-direction: column;
-          gap: clamp(24px, 3vw, 40px);
+          gap: clamp(20px, 2.5vw, 32px);
           width: 100%;
         }
 
-        .gallery-category {
+        .gallery-tabs {
           display: flex;
-          flex-direction: column;
-          gap: clamp(16px, 2vw, 24px);
+          flex-wrap: wrap;
+          gap: 8px;
         }
 
-        .category-title {
-          font-family: 'Russo One', sans-serif;
-          font-size: clamp(20px, 2.5vw, 32px);
-          font-weight: 400;
-          color: #66C48A;
-          margin: 0;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
+        .gallery-tab {
+          position: relative;
+          font-family: 'Roboto Mono', ui-monospace, monospace;
+          font-size: clamp(11px, 1vw, 14px);
+          color: rgba(255, 255, 255, 0.5);
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid transparent;
+          border-radius: 999px;
+          padding: 8px 16px;
+          cursor: pointer;
+          transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .gallery-tab:hover {
+          color: rgba(255, 255, 255, 0.75);
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        .gallery-tab.active {
+          color: #fff;
+          background: rgba(15, 181, 136, 0.2);
+          border-color: rgba(15, 181, 136, 0.5);
+        }
+
+        .tab-indicator {
+          position: absolute;
+          inset: 0;
+          border-radius: 999px;
+          background: rgba(15, 181, 136, 0.2);
+          border: 1px solid rgba(15, 181, 136, 0.5);
+          z-index: -1;
+        }
+
+        .tab-label {
+          position: relative;
+          z-index: 1;
+        }
+
+        .photo-stage {
+          min-height: 300px;
+        }
+
+        .photo-grid {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          align-items: flex-start;
+        }
+
+        /* 1 photo = centered, max width */
+        .photo-grid.photos-1 .polaroid {
+          max-width: 100%;
+        }
+
+        /* 2 photos = side by side, each takes half */
+        .photo-grid.photos-2 .polaroid {
+          flex: 1 1 0;
+          max-width: 50%;
+        }
+
+        /* 3 photos = row of 3, each takes a third */
+        .photo-grid.photos-3 .polaroid {
+          flex: 1 1 0;
+          max-width: 33.333%;
         }
 
         .polaroid {
@@ -125,6 +253,7 @@ function PhotoGallery() {
           display: block;
           width: 100%;
           height: auto;
+          object-fit: cover;
         }
 
         .polaroid-bottom {
@@ -136,13 +265,28 @@ function PhotoGallery() {
           background: #fff;
         }
 
-        /* Override react-photo-album default styles */
-        :global(.react-photo-album--masonry) {
-          gap: 16px !important;
-        }
+        /* Mobile: stack photos vertically */
+        @media (max-width: 640px) {
+          .photo-grid {
+            flex-direction: column;
+            align-items: center;
+          }
 
-        :global(.react-photo-album--column) {
-          gap: 16px !important;
+          .photo-grid.photos-2 .polaroid,
+          .photo-grid.photos-3 .polaroid {
+            max-width: 100%;
+            flex: none;
+            width: 100%;
+          }
+
+          .gallery-tabs {
+            gap: 6px;
+          }
+
+          .gallery-tab {
+            padding: 6px 12px;
+            font-size: 12px;
+          }
         }
       `}</style>
     </div>

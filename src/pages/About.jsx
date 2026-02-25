@@ -101,34 +101,6 @@ function About() {
 
         .gallery-column {
           flex: 1;
-          max-height: 80vh;
-          overflow-y: auto;
-          padding-right: 8px;
-        }
-
-        /* Styled scrollbar for gallery column - WebKit */
-        .gallery-column::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        .gallery-column::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 4px;
-        }
-
-        .gallery-column::-webkit-scrollbar-thumb {
-          background: #66C48A;
-          border-radius: 4px;
-        }
-
-        .gallery-column::-webkit-scrollbar-thumb:hover {
-          background: #0fb588;
-        }
-
-        /* Firefox scrollbar */
-        .gallery-column {
-          scrollbar-width: thin;
-          scrollbar-color: #66C48A rgba(255, 255, 255, 0.1);
         }
 
         .about-text {
@@ -164,9 +136,7 @@ function About() {
           }
 
           .gallery-column {
-            max-height: none;
-            overflow-y: visible;
-            padding-right: 0;
+            width: 100%;
           }
 
           .about-title {

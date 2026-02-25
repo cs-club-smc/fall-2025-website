@@ -8,13 +8,13 @@ import ryonPhoto from '../assets/team/photos/ryon.jpg';
 import aidanaPhoto from '../assets/team/photos/aidana.jpg';
 
 const boardMembers = [
-  { photo: evanPhoto, name: "Evan", role: "Co-President" },
   { photo: kaiPhoto, name: "Kai", role: "Co-President" },
+  { photo: ryonPhoto, name: "Ryon", role: "Co-President" },
   { photo: seanPhoto, name: "Sean", role: "Vice President" },
   { photo: akuaPhoto, name: "Akua", role: "Publicity Officer" },
   { photo: kathleenPhoto, name: "Kathleen", role: "Secretary" },
-  { photo: ryonPhoto, name: "Ryon", role: "Treasurer" },
   { photo: aidanaPhoto, name: "Aidana", role: "ICC Delegate" },
+  { photo: evanPhoto, name: "Evan", role: "Officer" },
 ];
 
 /**
