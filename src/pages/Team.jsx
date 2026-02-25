@@ -65,7 +65,7 @@ function Team() {
           position: relative;
           width: 100%;
           min-height: 100vh;
-          padding: clamp(2rem, 7.5vh, 9rem) clamp(1.5rem, 5vw, 5rem) 0;
+          padding: clamp(140px, 12vh, 200px) clamp(1.5rem, 5vw, 5rem) 0;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -258,7 +258,7 @@ function Team() {
         /* Mobile - Single Column Layout */
         @media (max-width: 768px) {
           .team-page {
-            padding: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 4vw, 2rem) 0;
+            padding: clamp(120px, 10vh, 160px) clamp(1rem, 4vw, 2rem) 0;
           }
 
           .cards-grid {

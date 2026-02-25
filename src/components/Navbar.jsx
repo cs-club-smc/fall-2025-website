@@ -10,7 +10,7 @@ function Navbar() {
             <div className="flex items-center px-12 py-6 w-full">
                 {/* Logo - Left side */}
                 <div className="flex-1">
-                    <Link to="/fall-2025-website/" className="flex items-center">
+                    <Link to="/" className="flex items-center">
                         <img src={logo} alt="CS Club Logo" className="w-auto h-20" />
                     </Link>
                 </div>
@@ -20,7 +20,7 @@ function Navbar() {
                     <Link
                         to="/"
                         className={`transition-colors ${
-                            location.pathname === '/fall-2025-website/'
+                            location.pathname === '/'
                                 ? 'text-teal-400'
                                 : 'text-white hover:text-teal-400'
                         }`}
@@ -30,7 +30,7 @@ function Navbar() {
                     <Link
                         to="/about"
                         className={`transition-colors ${
-                            location.pathname === '/fall-2025-website/about'
+                            location.pathname === '/about'
                                 ? 'text-teal-400'
                                 : 'text-white hover:text-teal-400'
                         }`}
@@ -40,7 +40,7 @@ function Navbar() {
                     <Link
                         to="/team"
                         className={`transition-colors ${
-                            location.pathname === '/fall-2025-website/team'
+                            location.pathname === '/team'
                                 ? 'text-teal-400'
                                 : 'text-white hover:text-teal-400'
                         }`}

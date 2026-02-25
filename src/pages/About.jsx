@@ -1,61 +1,55 @@
 import PhotoGallery from '../components/PhotoGallery'
-import line3 from '../assets/team/line-3.svg'
 
 function About() {
   return (
     <main className="about-page">
       <div className="about-content">
-        {/* Text content */}
-        <div className="text-section">
-          <h1 className="about-title">ABOUT US</h1>
+        <h1 className="about-title">ABOUT US</h1>
 
-          <div className="about-text">
-            <section>
-              <h2>Description:</h2>
-              <p>
-                Our club brings together students who are passionate about
-                computer science and technology. We organize workshops,
-                hackathons, and social events to help members learn new skills,
-                collaborate, and explore career opportunities in tech.
-              </p>
-            </section>
+        <div className="about-body">
+          {/* Text column */}
+          <div className="text-column">
+            <div className="about-text">
+              <section>
+                <h2>Description:</h2>
+                <p>
+                  Our club brings together students who are passionate about
+                  computer science and technology. We organize workshops,
+                  hackathons, and social events to help members learn new skills,
+                  collaborate, and explore career opportunities in tech.
+                </p>
+              </section>
 
-            <section>
-              <h2>Mission Statement:</h2>
-              <p>
-                To create a supportive and inclusive space where students can
-                grow their technical and professional skills while building
-                lasting connections through shared curiosity and creativity.
-              </p>
-            </section>
+              <section>
+                <h2>Mission Statement:</h2>
+                <p>
+                  To create a supportive and inclusive space where students can
+                  grow their technical and professional skills while building
+                  lasting connections through shared curiosity and creativity.
+                </p>
+              </section>
 
-            <section>
-              <h2>Goals:</h2>
-              <p>
-                – Host coding workshops and guest speaker events. <br />
-                – Encourage collaboration on open-source or student projects. <br />
-                – Help members prepare for internships and tech interviews. <br />
-                – Promote diversity and accessibility in STEM fields.
-              </p>
-            </section>
+              <section>
+                <h2>Goals:</h2>
+                <p>
+                  – Host coding workshops and guest speaker events. <br />
+                  – Encourage collaboration on open-source or student projects. <br />
+                  – Help members prepare for internships and tech interviews. <br />
+                  – Promote diversity and accessibility in STEM fields.
+                </p>
+              </section>
 
-            <section>
-              <h2>Advisors:</h2>
-              <p>Professors Koda Kol and Nathan Greenfield</p>
-            </section>
-
+              <section>
+                <h2>Advisors:</h2>
+                <p>Professors Koda Kol and Nathan Greenfield</p>
+              </section>
+            </div>
           </div>
-        </div>
 
-        {/* Section Divider */}
-        <div className="section-divider">
-          <img src={line3} alt="" />
-        </div>
-
-        {/* Photo Gallery */}
-        <div className="gallery-section">
-          <h2 className="gallery-title">GALLERY</h2>
-          <PhotoGallery />
+          {/* Gallery column */}
+          <div className="gallery-column">
+            <PhotoGallery />
+          </div>
         </div>
       </div>
 
@@ -71,7 +65,7 @@ function About() {
           display: flex;
           flex-direction: column;
           background: transparent;
-          padding: clamp(100px, 8vw, 140px) clamp(24px, 5vw, 80px) 0;
+          padding: clamp(140px, 12vh, 200px) clamp(24px, 5vw, 80px) 0;
           overflow-x: hidden;
         }
 
@@ -79,40 +73,9 @@ function About() {
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: clamp(50px, 6vw, 100px);
           max-width: 1400px;
           margin: 0 auto;
           width: 100%;
-        }
-
-        .text-section {
-          width: 100%;
-        }
-
-        .gallery-section {
-          width: 100%;
-        }
-
-        .section-divider {
-          width: clamp(300px, 80vw, 1200px);
-          height: 3px;
-          margin: 0 auto;
-        }
-
-        .section-divider img {
-          width: 100%;
-          height: 100%;
-          display: block;
-        }
-
-        .gallery-title {
-          font-family: 'Russo One', sans-serif;
-          font-size: clamp(36px, 5vw, 80px);
-          font-weight: 400;
-          line-height: 100%;
-          color: #F1F5F9;
-          margin: 0 0 clamp(24px, 3vw, 50px) 0;
-          text-align: center;
         }
 
         .about-title {
@@ -123,6 +86,49 @@ function About() {
           color: #F1F5F9;
           margin: 0 0 clamp(32px, 4vw, 70px) 0;
           text-align: center;
+        }
+
+        .about-body {
+          display: flex;
+          flex-direction: row;
+          gap: clamp(32px, 4vw, 60px);
+          align-items: flex-start;
+        }
+
+        .text-column {
+          flex: 0 0 45%;
+        }
+
+        .gallery-column {
+          flex: 1;
+          max-height: 80vh;
+          overflow-y: auto;
+          padding-right: 8px;
+        }
+
+        /* Styled scrollbar for gallery column - WebKit */
+        .gallery-column::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        .gallery-column::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+        }
+
+        .gallery-column::-webkit-scrollbar-thumb {
+          background: #66C48A;
+          border-radius: 4px;
+        }
+
+        .gallery-column::-webkit-scrollbar-thumb:hover {
+          background: #0fb588;
+        }
+
+        /* Firefox scrollbar */
+        .gallery-column {
+          scrollbar-width: thin;
+          scrollbar-color: #66C48A rgba(255, 255, 255, 0.1);
         }
 
         .about-text {
@@ -148,6 +154,21 @@ function About() {
 
         /* Tablet and below */
         @media (max-width: 1024px) {
+          .about-body {
+            flex-direction: column;
+          }
+
+          .text-column {
+            flex: none;
+            width: 100%;
+          }
+
+          .gallery-column {
+            max-height: none;
+            overflow-y: visible;
+            padding-right: 0;
+          }
+
           .about-title {
             font-size: clamp(40px, 10vw, 80px);
             margin-bottom: 30px;
@@ -161,10 +182,6 @@ function About() {
           .about-text section h2 {
             font-size: clamp(16px, 3.5vw, 24px);
             margin-bottom: 10px;
-          }
-
-          .gallery-title {
-            font-size: clamp(32px, 8vw, 60px);
           }
         }
 

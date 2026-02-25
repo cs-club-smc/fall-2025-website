@@ -58,11 +58,11 @@ function PhotoGallery() {
           <MasonryPhotoAlbum
             photos={category.photos}
             columns={(containerWidth) => {
-              if (containerWidth < 400) return 1;
-              if (containerWidth < 700) return 2;
+              if (containerWidth < 350) return 1;
+              if (containerWidth < 600) return 2;
               return 3;
             }}
-            spacing={24}
+            spacing={16}
             render={{
               image: (props, { photo, index }) => (
                 <div
@@ -82,7 +82,7 @@ function PhotoGallery() {
         .photo-gallery {
           display: flex;
           flex-direction: column;
-          gap: clamp(40px, 5vw, 70px);
+          gap: clamp(24px, 3vw, 40px);
           width: 100%;
         }
 
@@ -104,7 +104,7 @@ function PhotoGallery() {
 
         .polaroid {
           background: #fff;
-          padding: 12px 12px 40px 12px;
+          padding: 8px 8px 30px 8px;
           box-shadow:
             0 4px 6px rgba(0, 0, 0, 0.3),
             0 10px 20px rgba(0, 0, 0, 0.2);
@@ -132,17 +132,17 @@ function PhotoGallery() {
           bottom: 0;
           left: 0;
           right: 0;
-          height: 40px;
+          height: 30px;
           background: #fff;
         }
 
         /* Override react-photo-album default styles */
         :global(.react-photo-album--masonry) {
-          gap: 24px !important;
+          gap: 16px !important;
         }
 
         :global(.react-photo-album--column) {
-          gap: 24px !important;
+          gap: 16px !important;
         }
       `}</style>
     </div>
