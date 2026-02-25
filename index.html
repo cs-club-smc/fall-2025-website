@@ -12,6 +12,21 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- This script handles the redirect from 404.html for GitHub Pages SPA routing.
+         When 404.html redirects here, it reads the saved path from sessionStorage
+         and puts it back in the browser URL bar so React Router can pick it up. -->
+    <script>
+      (function () {
+        var redirect = sessionStorage.getItem('spa-redirect');
+        if (redirect) {
+          sessionStorage.removeItem('spa-redirect');
+          var correctPath = '/' + redirect;
+          if (window.location.pathname + window.location.search + window.location.hash !== correctPath) {
+            window.history.replaceState(null, '', correctPath);
+          }
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
