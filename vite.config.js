@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/fall-2025-website/'
+  base: '/smcCSofficialwebsite/'
 })
