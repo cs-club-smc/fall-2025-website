@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="min-h-screen">
       <AnimatedBackground />
-      <Router basename="/fall-2025-website">
+      <Router basename="/smcCSofficialwebsite">
         <Navbar />
         <AnimatedRoutes />
       </Router>
