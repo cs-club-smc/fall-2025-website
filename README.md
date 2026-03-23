@@ -2,7 +2,7 @@
 
 The official website for the CS Club at SMC. Built with React, Vite, and Tailwind CSS.
 
-**Live site:** https://cs-club-smc.github.io/smcCSofficialwebsite/
+**Live site:** https://smccs.club
 
 ## Getting Started
 
