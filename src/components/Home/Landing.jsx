@@ -4,6 +4,7 @@ import DownArrow from '../DownArrow';
 import benefitIcon1 from '../../assets/icons/benefit-icon-1.svg';
 import benefitIcon2 from '../../assets/icons/benefit-icon-2.svg';
 import benefitIcon3 from '../../assets/icons/benefit-icon-3.svg';
+import hacksmcLogo from '../../assets/hacksmc/logo-main.png';
 
 /**
  * Landing Component
@@ -114,15 +115,34 @@ function Landing() {
           </span>
         </motion.h1>
 
-        {/* Mission Statement */}
-        <motion.p
-          className="mission-text"
+        {/* Event Spotlight */}
+        <motion.a
+          href="https://hacksmc.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="event-spotlight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          Inspiring excellence through technology and teamwork. SMC CS Club is where passionate individuals come together to learn, innovate, and lead in the field of computer science.
-        </motion.p>
+          <div className="event-logo-wrapper">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <span key={i} className={`particle particle-${i}`} />
+            ))}
+            <img src={hacksmcLogo} alt="HackSMC logo" className="event-logo" />
+          </div>
+          <div className="event-info">
+            <span className="event-label">HACKSMC 2026</span>
+            <div className="event-details">
+              <span className="event-detail">May 9–10</span>
+              <span className="event-sep">|</span>
+              <span className="event-detail">Bundy Campus</span>
+              <span className="event-sep">|</span>
+              <span className="event-detail">$7k+ Prizes</span>
+            </div>
+          </div>
+          <span className="event-cta">Learn More →</span>
+        </motion.a>
 
         {/* Benefits - simple inline */}
         <motion.div
@@ -326,17 +346,117 @@ function Landing() {
           85% { opacity: 0; }
         }
 
-        /* Mission Text */
-        .mission-text {
-          max-width: min(85%, 950px);
-          font-family: 'Russo One', sans-serif;
-          font-size: clamp(14px, 1.4vw, 22px);
-          font-weight: 400;
-          line-height: 1.5;
-          text-align: center;
-          color: rgba(241, 245, 249, 0.75);
-          margin: 0;
+        /* Event Spotlight */
+        .event-spotlight {
+          display: flex;
+          align-items: center;
+          gap: clamp(1rem, 2vw, 1.5rem);
+          padding: clamp(12px, 1.5vh, 20px) clamp(16px, 3vw, 32px);
+          border: 1px solid rgba(15, 181, 136, 0.25);
+          border-radius: 16px;
+          background: rgba(15, 181, 136, 0.04);
+          box-shadow: 0 0 40px rgba(15, 181, 136, 0.08);
+          text-decoration: none;
           margin-bottom: clamp(2.5rem, 5vh, 4rem);
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .event-spotlight:hover {
+          background: rgba(15, 181, 136, 0.08);
+          border-color: rgba(15, 181, 136, 0.45);
+          box-shadow: 0 0 50px rgba(15, 181, 136, 0.15);
+        }
+
+        .event-logo-wrapper {
+          position: relative;
+          flex-shrink: 0;
+        }
+
+        .event-logo {
+          position: relative;
+          z-index: 1;
+          width: clamp(44px, 5vw, 64px);
+          height: auto;
+          filter: brightness(0) invert(1) drop-shadow(0 0 16px rgba(255, 255, 255, 0.15));
+        }
+
+        .particle {
+          position: absolute;
+          width: 2px;
+          height: 2px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.5);
+          bottom: -6px;
+          opacity: 0;
+          pointer-events: none;
+          animation: floatUp 3s ease-in infinite;
+        }
+
+        .particle-0  { left: 10%;  animation-delay: 0s;    animation-duration: 2.8s; }
+        .particle-1  { left: 25%;  animation-delay: 0.5s;  animation-duration: 3.2s; }
+        .particle-2  { left: 40%;  animation-delay: 1.1s;  animation-duration: 2.6s; }
+        .particle-3  { left: 55%;  animation-delay: 0.3s;  animation-duration: 3.5s; }
+        .particle-4  { left: 70%;  animation-delay: 0.8s;  animation-duration: 2.9s; }
+        .particle-5  { left: 85%;  animation-delay: 1.4s;  animation-duration: 3.1s; }
+        .particle-6  { left: 18%;  animation-delay: 1.8s;  animation-duration: 3.3s; width: 1.5px; height: 1.5px; }
+        .particle-7  { left: 48%;  animation-delay: 2.2s;  animation-duration: 2.7s; width: 1.5px; height: 1.5px; }
+        .particle-8  { left: 78%;  animation-delay: 0.6s;  animation-duration: 3.4s; width: 1.5px; height: 1.5px; }
+        .particle-9  { left: 33%;  animation-delay: 1.6s;  animation-duration: 2.5s; width: 3px; height: 3px; }
+        .particle-10 { left: 62%;  animation-delay: 2.0s;  animation-duration: 3.0s; width: 3px; height: 3px; }
+        .particle-11 { left: 5%;   animation-delay: 1.0s;  animation-duration: 3.6s; }
+
+        @keyframes floatUp {
+          0% { opacity: 0; transform: translateY(0) scale(1); }
+          15% { opacity: 0.7; }
+          70% { opacity: 0.3; }
+          100% { opacity: 0; transform: translateY(-80px) scale(0.3); }
+        }
+
+        .event-info {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .event-label {
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(16px, 1.8vw, 24px);
+          font-weight: 400;
+          color: #F1F5F9;
+          letter-spacing: 0.03em;
+        }
+
+        .event-details {
+          display: flex;
+          align-items: center;
+          gap: clamp(6px, 0.8vw, 10px);
+        }
+
+        .event-detail {
+          font-family: 'Roboto Mono', monospace;
+          font-size: clamp(11px, 1vw, 14px);
+          font-weight: 300;
+          color: #0FB588;
+          white-space: nowrap;
+        }
+
+        .event-sep {
+          color: rgba(15, 181, 136, 0.3);
+          font-size: clamp(11px, 1vw, 14px);
+        }
+
+        .event-cta {
+          font-family: 'Russo One', sans-serif;
+          font-size: clamp(12px, 1.1vw, 16px);
+          color: rgba(15, 181, 136, 0.7);
+          white-space: nowrap;
+          margin-left: clamp(0.5rem, 1.5vw, 1.5rem);
+          transition: color 0.3s ease;
+        }
+
+        .event-spotlight:hover .event-cta {
+          color: #0FB588;
         }
 
         /* Benefits - clean inline */
@@ -399,6 +519,29 @@ function Landing() {
 
         /* Responsive */
         @media (max-width: 600px) {
+          .event-spotlight {
+            flex-direction: column;
+            text-align: center;
+            gap: 0.75rem;
+          }
+
+          .event-info {
+            align-items: center;
+          }
+
+          .event-details {
+            flex-direction: column;
+            gap: 2px;
+          }
+
+          .event-sep {
+            display: none;
+          }
+
+          .event-cta {
+            margin-left: 0;
+          }
+
           .benefits-container {
             flex-direction: column;
             gap: 1.25rem;
