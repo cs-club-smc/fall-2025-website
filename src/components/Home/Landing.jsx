@@ -421,7 +421,7 @@ function Landing() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           padding: clamp(5rem, 8vh, 6rem) clamp(1rem, 5vw, 3rem) clamp(2rem, 5vh, 4rem);
           box-sizing: border-box;
         }
@@ -435,6 +435,7 @@ function Landing() {
           line-height: 0.9;
           text-align: center;
           margin: 0;
+          margin-top: auto;
           margin-bottom: clamp(2rem, 4vh, 3.5rem);
           display: flex;
           flex-direction: column;
