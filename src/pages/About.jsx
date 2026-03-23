@@ -1,7 +1,9 @@
 import PhotoGallery from '../components/PhotoGallery'
+import Footer from '../components/Footer'
 
 function About() {
   return (
+    <>
     <main className="about-page">
       <div className="about-content">
         <h1 className="about-title">ABOUT US</h1>
@@ -53,11 +55,9 @@ function About() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="page-footer">
-        <p className="footer-text">Built with ❤️ by the CS Club Website Committee</p>
-        <p className="footer-text">1900 Pico Blvd, Santa Monica, CA 90405</p>
-      </footer>
+      </main>
+
+      <Footer />
 
       <style jsx>{`
         .about-page {
@@ -227,46 +227,8 @@ function About() {
           }
         }
 
-        /* Footer */
-        .page-footer {
-          position: relative;
-          width: 100vw;
-          margin-left: calc(-1 * clamp(24px, 5vw, 80px));
-          background: rgba(0, 0, 0, 0.85);
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 8vw, 145px);
-          flex-wrap: wrap;
-          gap: clamp(0.5rem, 1vh, 1rem);
-          box-sizing: border-box;
-          margin-top: clamp(3rem, 5vh, 5rem);
-        }
-
-        .footer-text {
-          font-family: 'Roboto Mono', monospace;
-          font-size: clamp(12px, 1.5vw, 24px);
-          font-weight: 300;
-          color: #F1F5F9;
-          margin: 0;
-        }
-
-        @media (max-width: 950px) {
-          .page-footer {
-            flex-direction: column;
-            text-align: center;
-            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
-          }
-        }
-
-        @media (max-width: 640px) {
-          .page-footer {
-            margin-left: -20px;
-          }
-        }
       `}</style>
-    </main>
+    </>
   )
 }
 

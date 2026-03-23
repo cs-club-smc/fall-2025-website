@@ -1,4 +1,4 @@
-import line3 from '../assets/team/line-3.svg';
+import Footer from '../components/Footer';
 import evanPhoto from '../assets/team/photos/evan.jpg';
 import kaiPhoto from '../assets/team/photos/kai.jpg';
 import seanPhoto from '../assets/team/photos/sean.jpg';
@@ -23,42 +23,31 @@ const boardMembers = [
  */
 function Team() {
   return (
-    <div className="team-page">
-      {/* Title */}
-      <h1 className="page-title">OUR TEAM</h1>
+    <>
+      <div className="team-page">
+        {/* Title */}
+        <h1 className="page-title">OUR TEAM</h1>
 
-      {/* Title Underline */}
-      <div className="title-underline">
-        <img src={line3} alt="" />
-      </div>
-
-      {/* Cards Grid Container */}
-      <div className="cards-grid">
-        {boardMembers.map((member, index) => (
-          <div
-            key={member.role + index}
-            className="card"
-            style={{ animationDelay: `${index * 0.15}s` }}
-          >
-            <p className="member-name">{member.name}</p>
-            <div className="card-bg">
-              <img src={member.photo} alt={member.name} className="member-photo" />
+        {/* Cards Grid Container */}
+        <div className="cards-grid">
+          {boardMembers.map((member, index) => (
+            <div
+              key={member.role + index}
+              className="card"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <p className="member-name">{member.name}</p>
+              <div className="card-bg">
+                <img src={member.photo} alt={member.name} className="member-photo" />
+              </div>
+              <p className="role-title">{member.role}</p>
             </div>
-            <p className="role-title">{member.role}</p>
-          </div>
-        ))}
+          ))}
+        </div>
+
       </div>
 
-      {/* Bottom Line */}
-      <div className="bottom-line">
-        <img src={line3} alt="" />
-      </div>
-
-      {/* Footer */}
-      <footer className="page-footer">
-        <p className="footer-text">Built with ❤️ by the CS Club Website Committee</p>
-        <p className="footer-text">1900 Pico Blvd, Santa Monica, CA 90405</p>
-      </footer>
+      <Footer />
 
       <style jsx>{`
         .team-page {
@@ -81,18 +70,6 @@ function Team() {
           color: #F1F5F9;
           margin: 0 0 clamp(1rem, 2vh, 2rem) 0;
           text-align: center;
-        }
-
-        .title-underline {
-          width: clamp(300px, 33.6vw, 646px);
-          height: 3px;
-          margin-bottom: clamp(2rem, 4vh, 4rem);
-        }
-
-        .title-underline img {
-          width: 100%;
-          height: 100%;
-          display: block;
         }
 
         /* Cards Grid - Modern Responsive Layout */
@@ -230,19 +207,6 @@ function Team() {
           opacity: 0.2;
         }
 
-        /* Bottom Line */
-        .bottom-line {
-          width: clamp(300px, 91.4vw, 1754px);
-          height: 5px;
-          margin-top: auto;
-        }
-
-        .bottom-line img {
-          width: 100%;
-          height: 100%;
-          display: block;
-        }
-
         /* Tablet - 2 Column Layout */
         @media (max-width: 1024px) {
           .cards-grid {
@@ -282,46 +246,8 @@ function Team() {
           }
         }
 
-        /* Footer */
-        .page-footer {
-          position: relative;
-          width: 100vw;
-          margin-left: calc(-1 * clamp(1.5rem, 5vw, 5rem));
-          background: rgba(0, 0, 0, 0.85);
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 8vw, 145px);
-          flex-wrap: wrap;
-          gap: clamp(0.5rem, 1vh, 1rem);
-          box-sizing: border-box;
-          margin-top: clamp(2rem, 4vh, 4rem);
-        }
-
-        .footer-text {
-          font-family: 'Roboto Mono', monospace;
-          font-size: clamp(12px, 1.5vw, 24px);
-          font-weight: 300;
-          color: #F1F5F9;
-          margin: 0;
-        }
-
-        @media (max-width: 950px) {
-          .page-footer {
-            flex-direction: column;
-            text-align: center;
-            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
-          }
-        }
-
-        @media (max-width: 768px) {
-          .page-footer {
-            margin-left: calc(-1 * clamp(1rem, 4vw, 2rem));
-          }
-        }
       `}</style>
-    </div>
+    </>
   );
 }
 

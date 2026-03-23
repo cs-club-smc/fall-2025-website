@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import Landing from "../components/Home/Landing";
 import InstagramFeed from "../components/Home/InstagramFeed";
+import Footer from "../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,11 +70,7 @@ function Home() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="home-footer">
-          <p className="footer-text">Built with ❤️ by the CS Club Website Committee</p>
-          <p className="footer-text">1900 Pico Blvd, Santa Monica, CA 90405</p>
-        </footer>
+        <Footer />
       </div>
 
       <style jsx>{`
@@ -106,37 +103,7 @@ function Home() {
           padding: clamp(2rem, 6vh, 5rem) 0;
         }
 
-        /* Footer */
-        .home-footer {
-          position: relative;
-          width: 100%;
-          background: rgba(0, 0, 0, 0.85);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 8vw, 145px);
-          z-index: 5;
-          flex-wrap: wrap;
-          gap: clamp(0.5rem, 1vh, 1rem);
-          box-sizing: border-box;
-        }
 
-        .footer-text {
-          font-family: 'Roboto Mono', monospace;
-          font-size: clamp(12px, 1.5vw, 24px);
-          font-weight: 300;
-          color: #F1F5F9;
-          margin: 0;
-        }
-
-
-        @media (max-width: 950px) {
-          .home-footer {
-            flex-direction: column;
-            text-align: center;
-            padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 5vw, 2rem);
-          }
-        }
 
       `}</style>
     </>

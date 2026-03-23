@@ -186,15 +186,11 @@ function Landing() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
 
-  // Auto-advance slideshow using timeout synced with progress bar
-  useEffect(() => {
+  const advanceSlide = useCallback(() => {
     if (isPaused) return;
-    const timeout = setTimeout(() => {
-      setDirection(1);
-      setCurrentSlide((prev) => (prev + 1) % EVENTS.length);
-    }, 4200);
-    return () => clearTimeout(timeout);
-  }, [isPaused, currentSlide]);
+    setDirection(1);
+    setCurrentSlide((prev) => (prev + 1) % EVENTS.length);
+  }, [isPaused]);
 
   const goToSlide = useCallback((index) => {
     setDirection(index > currentSlide ? 1 : -1);
@@ -310,14 +306,14 @@ function Landing() {
           <div className="slideshow-controls">
             <div className="progress-track">
               <motion.div
-                key={`progress-${currentSlide}`}
+                key={`progress-${currentSlide}-${isPaused}`}
                 className="progress-fill"
-                initial={{ width: '0%' }}
-                animate={{ width: '100%' }}
-                transition={{ duration: 4.2, ease: 'linear' }}
+                initial={{ width: isPaused ? undefined : '0%' }}
+                animate={{ width: isPaused ? undefined : '100%' }}
+                transition={{ duration: 4, ease: 'linear' }}
+                onAnimationComplete={advanceSlide}
                 style={{
                   background: accentColor,
-                  animationPlayState: isPaused ? 'paused' : 'running',
                 }}
               />
             </div>
