@@ -846,6 +846,23 @@ function Landing() {
 
         /* Responsive */
         @media (max-width: 600px) {
+          .landing-container {
+            height: auto;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow: visible;
+          }
+
+          .grain {
+            inset: 0;
+          }
+
+          .content-wrapper {
+            height: auto;
+            min-height: 100vh;
+            min-height: 100dvh;
+          }
+
           .slide-header {
             flex-direction: column;
             align-items: center;
