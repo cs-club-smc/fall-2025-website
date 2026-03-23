@@ -391,6 +391,7 @@ function Landing() {
           position: relative;
           width: 100%;
           height: 100vh;
+          height: 100dvh;
           min-height: 600px;
           overflow: hidden;
         }
@@ -416,7 +417,8 @@ function Landing() {
         .content-wrapper {
           position: relative;
           width: 100%;
-          height: 100%;
+          height: 100vh;
+          height: 100dvh;
           z-index: 1;
           display: flex;
           flex-direction: column;
@@ -883,7 +885,7 @@ function Landing() {
 
           .benefits-container {
             flex-direction: column;
-            gap: 1.25rem;
+            gap: 0.75rem;
           }
         }
       `}</style>
