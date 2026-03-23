@@ -71,8 +71,8 @@ function Home() {
 
         {/* Footer */}
         <footer className="home-footer">
-          <p className="footer-meetings">Weekly Meetings on Thursday @ 11:00 AM - 12:30 PM | MSB 205</p>
-          <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405</p>
+          <p className="footer-text">&copy; 2026 SMC Computer Science Club</p>
+          <p className="footer-text">1900 Pico Blvd, Santa Monica, CA 90405</p>
         </footer>
       </div>
 
@@ -121,8 +121,7 @@ function Home() {
           box-sizing: border-box;
         }
 
-        .footer-meetings,
-        .footer-location {
+        .footer-text {
           font-family: 'Roboto Mono', monospace;
           font-size: clamp(12px, 1.5vw, 24px);
           font-weight: 300;

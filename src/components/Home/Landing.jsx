@@ -144,12 +144,36 @@ function Landing() {
           <span className="event-cta">Learn More →</span>
         </motion.a>
 
+        {/* Meeting Info Strip */}
+        <motion.div
+          className="meeting-strip"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+          transition={{ duration: 0.8, delay: 1.35, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="meeting-item">
+            <svg className="meeting-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span className="meeting-text">Thursdays, 11:00 AM – 12:30 PM</span>
+          </div>
+          <span className="meeting-divider">|</span>
+          <div className="meeting-item">
+            <svg className="meeting-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span className="meeting-text">MSB 205 · 1900 Pico Blvd, Santa Monica</span>
+          </div>
+        </motion.div>
+
         {/* Benefits - simple inline */}
         <motion.div
           className="benefits-container"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-          transition={{ duration: 0.8, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: 1.65, ease: [0.22, 1, 0.36, 1] }}
         >
           {benefits.map((benefit, i) => (
             <div key={benefit.label} className="benefit-item">
@@ -166,7 +190,7 @@ function Landing() {
           className="arrow-wrapper"
           initial={{ opacity: 0 }}
           animate={{ opacity: isLoaded ? 1 : 0 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
+          transition={{ duration: 0.8, delay: 1.95 }}
         >
           <DownArrow targetId="instagram" />
         </motion.div>
@@ -459,6 +483,45 @@ function Landing() {
           color: #0FB588;
         }
 
+        /* Meeting Info Strip */
+        .meeting-strip {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: clamp(0.75rem, 2vw, 1.5rem);
+          margin-bottom: clamp(2.5rem, 5vh, 4rem);
+          padding: clamp(8px, 1vh, 12px) clamp(16px, 3vw, 28px);
+          border-radius: 999px;
+          background: rgba(15, 181, 136, 0.03);
+          border: 1px solid rgba(15, 181, 136, 0.12);
+        }
+
+        .meeting-item {
+          display: flex;
+          align-items: center;
+          gap: clamp(6px, 0.6vw, 10px);
+        }
+
+        .meeting-icon {
+          width: clamp(14px, 1.2vw, 18px);
+          height: clamp(14px, 1.2vw, 18px);
+          color: #0FB588;
+          flex-shrink: 0;
+        }
+
+        .meeting-text {
+          font-family: 'Roboto Mono', monospace;
+          font-size: clamp(11px, 1vw, 14px);
+          font-weight: 300;
+          color: rgba(241, 245, 249, 0.7);
+          white-space: nowrap;
+        }
+
+        .meeting-divider {
+          color: rgba(15, 181, 136, 0.2);
+          font-size: clamp(11px, 1vw, 14px);
+        }
+
         /* Benefits - clean inline */
         .benefits-container {
           display: flex;
@@ -540,6 +603,22 @@ function Landing() {
 
           .event-cta {
             margin-left: 0;
+          }
+
+          .meeting-strip {
+            flex-direction: column;
+            gap: 0.5rem;
+            border-radius: 12px;
+            padding: 12px 20px;
+          }
+
+          .meeting-divider {
+            display: none;
+          }
+
+          .meeting-text {
+            white-space: normal;
+            text-align: center;
           }
 
           .benefits-container {
