@@ -71,7 +71,7 @@ function Home() {
 
         {/* Footer */}
         <footer className="home-footer">
-          <p className="footer-text">&copy; 2026 SMC Computer Science Club</p>
+          <p className="footer-text">Built with ❤️ by the CS Club Website Committee</p>
           <p className="footer-text">1900 Pico Blvd, Santa Monica, CA 90405</p>
         </footer>
       </div>
@@ -128,6 +128,7 @@ function Home() {
           color: #F1F5F9;
           margin: 0;
         }
+
 
         @media (max-width: 950px) {
           .home-footer {

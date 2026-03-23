@@ -55,7 +55,7 @@ function About() {
 
       {/* Footer */}
       <footer className="page-footer">
-        <p className="footer-text">&copy; 2026 SMC Computer Science Club</p>
+        <p className="footer-text">Built with ❤️ by the CS Club Website Committee</p>
         <p className="footer-text">1900 Pico Blvd, Santa Monica, CA 90405</p>
       </footer>
 

@@ -1,5 +1,6 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { HiOutlineLocationMarker, HiOutlineCode, HiOutlineMicrophone } from 'react-icons/hi';
 import DownArrow from '../DownArrow';
 import benefitIcon1 from '../../assets/icons/benefit-icon-1.svg';
 import benefitIcon2 from '../../assets/icons/benefit-icon-2.svg';
@@ -8,7 +9,7 @@ import hacksmcLogo from '../../assets/hacksmc/logo-main.png';
 
 /**
  * Landing Component
- * Hero section with text scramble effect and refined aesthetics
+ * Hero section with text scramble effect, event slideshow, and refined aesthetics
  */
 
 // Text scramble hook - decodes text character by character
@@ -51,11 +52,116 @@ function useTextScramble(text, delay = 0, speed = 30) {
   return displayed;
 }
 
+// Events data
+const EVENTS = [
+  {
+    id: 'lmu-shpe',
+    type: 'tour',
+    name: 'LMU SHPE Tour',
+    date: 'March 26',
+    time: '5:30 PM',
+    tagline: 'Loyola Marymount University',
+    cta: { label: 'Sign Up', url: 'https://docs.google.com/forms/d/e/1FAIpQLSctbG_1HJe-MMK_-lRh3NzwBc1ioZDaFW6KDx8Wdikbd2Vlrw/viewform' },
+  },
+  {
+    id: 'planetarium',
+    type: 'tour',
+    name: 'SMC Planetarium Tour',
+    date: 'April 27',
+    time: 'Time TBA',
+    tagline: 'Santa Monica College',
+    cta: { label: 'Coming Soon', url: null },
+  },
+  {
+    id: 'snapchat',
+    type: 'tour',
+    name: 'Snapchat Office Tour',
+    date: 'May 7',
+    time: '3:00 – 5:00 PM',
+    tagline: 'Santa Monica HQ',
+    cta: { label: 'Sign Up', url: 'https://docs.google.com/forms/d/e/1FAIpQLSer2trn0kGwUns4wAyAqpw4nnDetOVgrqtYFbAAtmOLUXIDKw/viewform' },
+  },
+  {
+    id: 'hacksmc',
+    type: 'hackathon',
+    name: 'HackSMC 2026',
+    date: 'May 9–10',
+    time: null,
+    tagline: '$7k+ in Prizes',
+    cta: { label: 'Learn More', url: 'https://hacksmc.com' },
+    logo: hacksmcLogo,
+  },
+  {
+    id: 'anita',
+    type: 'speaker',
+    name: 'Anita Jalili',
+    date: 'May 19',
+    time: null,
+    tagline: 'NAVWAR Cybersecurity Intern',
+    bio: 'SMC → Cal State Northridge · Published Author · Hackathon Winner',
+    cta: { label: 'Coming Soon', url: null },
+  },
+  {
+    id: 'haley',
+    type: 'speaker',
+    name: 'Hailey Lepe',
+    date: 'May 2026',
+    time: 'Date TBA',
+    tagline: 'Stanford CS Student',
+    bio: 'Breakthrough Tech Alum · Research at UC Berkeley & UPenn',
+    cta: { label: 'Coming Soon', url: null },
+  },
+];
+
+const TYPE_COLORS = {
+  tour: '#0FB588',
+  hackathon: '#FFD700',
+  speaker: '#818CF8',
+};
+
+const TYPE_COLORS_RGB = {
+  tour: '15, 181, 136',
+  hackathon: '255, 215, 0',
+  speaker: '129, 140, 248',
+};
+
+const TYPE_ICONS = {
+  tour: <HiOutlineLocationMarker />,
+  hackathon: <HiOutlineCode />,
+  speaker: <HiOutlineMicrophone />,
+};
+
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? 80 : -80,
+    opacity: 0,
+    scale: 0.95,
+    filter: 'blur(4px)',
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: (direction) => ({
+    x: direction > 0 ? -80 : 80,
+    opacity: 0,
+    scale: 0.95,
+    filter: 'blur(4px)',
+    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
 function Landing() {
   const containerRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Scramble effect for title - slowed down 50%
+  // Scramble effect for title
   const smcText = useTextScramble('SMC', 450, 60);
   const csText = useTextScramble('CS CLUB', 900, 55);
 
@@ -80,11 +186,40 @@ function Landing() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
 
+  // Auto-advance slideshow using timeout synced with progress bar
+  useEffect(() => {
+    if (isPaused) return;
+    const timeout = setTimeout(() => {
+      setDirection(1);
+      setCurrentSlide((prev) => (prev + 1) % EVENTS.length);
+    }, 4200);
+    return () => clearTimeout(timeout);
+  }, [isPaused, currentSlide]);
+
+  const goToSlide = useCallback((index) => {
+    setDirection(index > currentSlide ? 1 : -1);
+    setCurrentSlide(index);
+  }, [currentSlide]);
+
+  const handleDragEnd = useCallback((e, info) => {
+    if (info.offset.x < -50) {
+      setDirection(1);
+      setCurrentSlide((prev) => (prev + 1) % EVENTS.length);
+    } else if (info.offset.x > 50) {
+      setDirection(-1);
+      setCurrentSlide((prev) => (prev - 1 + EVENTS.length) % EVENTS.length);
+    }
+  }, []);
+
   const benefits = [
     { icon: benefitIcon1, label: 'Knowledge' },
     { icon: benefitIcon2, label: 'Experience' },
     { icon: benefitIcon3, label: 'Networking' }
   ];
+
+  const event = EVENTS[currentSlide];
+  const accentColor = TYPE_COLORS[event.type];
+  const accentRgb = TYPE_COLORS_RGB[event.type];
 
   return (
     <div className="landing-container" ref={containerRef}>
@@ -115,34 +250,93 @@ function Landing() {
           </span>
         </motion.h1>
 
-        {/* Event Spotlight */}
-        <motion.a
-          href="https://hacksmc.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="event-spotlight"
+        {/* Event Slideshow */}
+        <motion.div
+          className="event-slideshow"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="event-logo-wrapper">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <span key={i} className={`particle particle-${i}`} />
-            ))}
-            <img src={hacksmcLogo} alt="HackSMC logo" className="event-logo" />
-          </div>
-          <div className="event-info">
-            <span className="event-label">HACKSMC 2026</span>
-            <div className="event-details">
-              <span className="event-detail">May 9–10</span>
-              <span className="event-sep">|</span>
-              <span className="event-detail">Bundy Campus</span>
-              <span className="event-sep">|</span>
-              <span className="event-detail">$7k+ Prizes</span>
+          <AnimatePresence mode="wait" custom={direction}>
+            {event.cta.url ? (
+              <motion.a
+                key={event.id}
+                href={event.cta.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="event-slide"
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.15}
+                onDragEnd={handleDragEnd}
+                style={{
+                  '--event-accent': accentColor,
+                  '--event-accent-rgb': accentRgb,
+                }}
+              >
+                <SlideContent event={event} />
+              </motion.a>
+            ) : (
+              <motion.div
+                key={event.id}
+                className="event-slide"
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.15}
+                onDragEnd={handleDragEnd}
+                style={{
+                  '--event-accent': accentColor,
+                  '--event-accent-rgb': accentRgb,
+                }}
+              >
+                <SlideContent event={event} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Progress bar + dots */}
+          <div className="slideshow-controls">
+            <div className="progress-track">
+              <motion.div
+                key={`progress-${currentSlide}`}
+                className="progress-fill"
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 4.2, ease: 'linear' }}
+                style={{
+                  background: accentColor,
+                  animationPlayState: isPaused ? 'paused' : 'running',
+                }}
+              />
+            </div>
+            <div className="slide-dots">
+              {EVENTS.map((evt, i) => (
+                <button
+                  key={evt.id}
+                  className={`slide-dot ${i === currentSlide ? 'active' : ''}`}
+                  onClick={() => goToSlide(i)}
+                  aria-label={`Go to ${evt.name}`}
+                  style={i === currentSlide ? {
+                    background: accentColor,
+                    boxShadow: `0 0 8px ${accentColor}`,
+                  } : undefined}
+                />
+              ))}
             </div>
           </div>
-          <span className="event-cta">Learn More →</span>
-        </motion.a>
+        </motion.div>
 
         {/* Meeting Info Strip */}
         <motion.div
@@ -240,7 +434,7 @@ function Landing() {
         .hero-title {
           position: relative;
           font-family: 'Russo One', sans-serif;
-          font-size: clamp(52px, 13vw, 240px);
+          font-size: clamp(48px, 10vw, 180px);
           font-weight: 400;
           line-height: 0.9;
           text-align: center;
@@ -370,31 +564,75 @@ function Landing() {
           85% { opacity: 0; }
         }
 
-        /* Event Spotlight */
-        .event-spotlight {
+        /* Event Slideshow */
+        .event-slideshow {
+          position: relative;
+          width: 100%;
+          max-width: 560px;
+          margin-bottom: clamp(2rem, 4vh, 3.5rem);
+        }
+
+        .event-slide {
           display: flex;
+          flex-direction: column;
           align-items: center;
-          gap: clamp(1rem, 2vw, 1.5rem);
-          padding: clamp(12px, 1.5vh, 20px) clamp(16px, 3vw, 32px);
-          border: 1px solid rgba(15, 181, 136, 0.25);
+          text-align: center;
+          padding: clamp(16px, 2vh, 24px) clamp(20px, 4vw, 40px);
+          min-height: clamp(180px, 22vh, 240px);
+          border: 1px solid rgba(var(--event-accent-rgb), 0.25);
+          border-top: 3px solid var(--event-accent);
           border-radius: 16px;
-          background: rgba(15, 181, 136, 0.04);
-          box-shadow: 0 0 40px rgba(15, 181, 136, 0.08);
+          background: rgba(var(--event-accent-rgb), 0.04);
+          box-shadow: 0 0 40px rgba(var(--event-accent-rgb), 0.08);
           text-decoration: none;
-          margin-bottom: clamp(2.5rem, 5vh, 4rem);
-          transition: all 0.3s ease;
+          transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+          cursor: default;
+          justify-content: center;
+          gap: 8px;
+        }
+
+        a.event-slide {
           cursor: pointer;
         }
 
-        .event-spotlight:hover {
-          background: rgba(15, 181, 136, 0.08);
-          border-color: rgba(15, 181, 136, 0.45);
-          box-shadow: 0 0 50px rgba(15, 181, 136, 0.15);
+        a.event-slide:hover {
+          background: rgba(var(--event-accent-rgb), 0.08);
+          border-color: rgba(var(--event-accent-rgb), 0.45);
+          box-shadow: 0 0 50px rgba(var(--event-accent-rgb), 0.15);
+        }
+
+        .slide-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          margin-bottom: 4px;
+        }
+
+        .event-type-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 4px 12px;
+          border-radius: 999px;
+          font-family: 'Roboto Mono', monospace;
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.08em;
+          background: rgba(var(--event-accent-rgb), 0.15);
+          color: var(--event-accent);
+        }
+
+        .event-date {
+          font-family: 'Roboto Mono', monospace;
+          font-size: clamp(11px, 1vw, 13px);
+          color: rgba(241, 245, 249, 0.6);
         }
 
         .event-logo-wrapper {
           position: relative;
           flex-shrink: 0;
+          margin-bottom: 4px;
         }
 
         .event-logo {
@@ -417,18 +655,12 @@ function Landing() {
           animation: floatUp 3s ease-in infinite;
         }
 
-        .particle-0  { left: 10%;  animation-delay: 0s;    animation-duration: 2.8s; }
-        .particle-1  { left: 25%;  animation-delay: 0.5s;  animation-duration: 3.2s; }
-        .particle-2  { left: 40%;  animation-delay: 1.1s;  animation-duration: 2.6s; }
-        .particle-3  { left: 55%;  animation-delay: 0.3s;  animation-duration: 3.5s; }
-        .particle-4  { left: 70%;  animation-delay: 0.8s;  animation-duration: 2.9s; }
-        .particle-5  { left: 85%;  animation-delay: 1.4s;  animation-duration: 3.1s; }
-        .particle-6  { left: 18%;  animation-delay: 1.8s;  animation-duration: 3.3s; width: 1.5px; height: 1.5px; }
-        .particle-7  { left: 48%;  animation-delay: 2.2s;  animation-duration: 2.7s; width: 1.5px; height: 1.5px; }
-        .particle-8  { left: 78%;  animation-delay: 0.6s;  animation-duration: 3.4s; width: 1.5px; height: 1.5px; }
-        .particle-9  { left: 33%;  animation-delay: 1.6s;  animation-duration: 2.5s; width: 3px; height: 3px; }
-        .particle-10 { left: 62%;  animation-delay: 2.0s;  animation-duration: 3.0s; width: 3px; height: 3px; }
-        .particle-11 { left: 5%;   animation-delay: 1.0s;  animation-duration: 3.6s; }
+        .particle-0 { left: 10%;  animation-delay: 0s;    animation-duration: 2.8s; }
+        .particle-1 { left: 25%;  animation-delay: 0.5s;  animation-duration: 3.2s; }
+        .particle-2 { left: 40%;  animation-delay: 1.1s;  animation-duration: 2.6s; }
+        .particle-3 { left: 55%;  animation-delay: 0.3s;  animation-duration: 3.5s; }
+        .particle-4 { left: 70%;  animation-delay: 0.8s;  animation-duration: 2.9s; }
+        .particle-5 { left: 85%;  animation-delay: 1.4s;  animation-duration: 3.1s; }
 
         @keyframes floatUp {
           0% { opacity: 0; transform: translateY(0) scale(1); }
@@ -437,50 +669,84 @@ function Landing() {
           100% { opacity: 0; transform: translateY(-80px) scale(0.3); }
         }
 
-        .event-info {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .event-label {
+        .event-name {
           font-family: 'Russo One', sans-serif;
-          font-size: clamp(16px, 1.8vw, 24px);
+          font-size: clamp(20px, 2.5vw, 32px);
           font-weight: 400;
           color: #F1F5F9;
-          letter-spacing: 0.03em;
+          margin: 0;
+          letter-spacing: 0.02em;
         }
 
-        .event-details {
-          display: flex;
-          align-items: center;
-          gap: clamp(6px, 0.8vw, 10px);
-        }
-
-        .event-detail {
+        .event-tagline {
           font-family: 'Roboto Mono', monospace;
-          font-size: clamp(11px, 1vw, 14px);
+          font-size: clamp(12px, 1.1vw, 15px);
           font-weight: 300;
-          color: #0FB588;
-          white-space: nowrap;
+          color: var(--event-accent);
+          margin: 0;
         }
 
-        .event-sep {
-          color: rgba(15, 181, 136, 0.3);
-          font-size: clamp(11px, 1vw, 14px);
+        .event-bio {
+          font-family: 'Roboto Mono', monospace;
+          font-size: clamp(11px, 0.9vw, 13px);
+          font-weight: 300;
+          color: rgba(241, 245, 249, 0.5);
+          margin: 0;
         }
 
-        .event-cta {
+        .event-cta-btn {
           font-family: 'Russo One', sans-serif;
-          font-size: clamp(12px, 1.1vw, 16px);
-          color: rgba(15, 181, 136, 0.7);
-          white-space: nowrap;
-          margin-left: clamp(0.5rem, 1.5vw, 1.5rem);
-          transition: color 0.3s ease;
+          font-size: clamp(12px, 1.1vw, 15px);
+          color: var(--event-accent);
+          opacity: 0.7;
+          transition: opacity 0.3s ease;
+          margin-top: 4px;
         }
 
-        .event-spotlight:hover .event-cta {
-          color: #0FB588;
+        a.event-slide:hover .event-cta-btn {
+          opacity: 1;
+        }
+
+        /* Slideshow Controls */
+        .slideshow-controls {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          margin-top: 16px;
+        }
+
+        .progress-track {
+          width: 100%;
+          height: 3px;
+          background: rgba(255, 255, 255, 0.08);
+          border-radius: 999px;
+          overflow: hidden;
+        }
+
+        .progress-fill {
+          height: 100%;
+          border-radius: 999px;
+        }
+
+        .slide-dots {
+          display: flex;
+          gap: 8px;
+        }
+
+        .slide-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.2);
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .slide-dot:hover {
+          background: rgba(255, 255, 255, 0.4);
         }
 
         /* Meeting Info Strip */
@@ -582,27 +848,24 @@ function Landing() {
 
         /* Responsive */
         @media (max-width: 600px) {
-          .event-spotlight {
+          .slide-header {
             flex-direction: column;
-            text-align: center;
-            gap: 0.75rem;
-          }
-
-          .event-info {
             align-items: center;
+            gap: 8px;
           }
 
-          .event-details {
-            flex-direction: column;
-            gap: 2px;
+          .event-slide {
+            padding: 16px 20px;
+            min-height: 160px;
           }
 
-          .event-sep {
-            display: none;
+          .slide-dot {
+            width: 12px;
+            height: 12px;
           }
 
-          .event-cta {
-            margin-left: 0;
+          .slide-dots {
+            gap: 12px;
           }
 
           .meeting-strip {
@@ -628,6 +891,37 @@ function Landing() {
         }
       `}</style>
     </div>
+  );
+}
+
+function SlideContent({ event }) {
+  return (
+    <>
+      <div className="slide-header">
+        <span className="event-type-badge">
+          {TYPE_ICONS[event.type]}
+          {event.type.toUpperCase()}
+        </span>
+        <span className="event-date">
+          {event.date}
+          {event.time && ` · ${event.time}`}
+        </span>
+      </div>
+
+      {event.logo && (
+        <div className="event-logo-wrapper">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span key={i} className={`particle particle-${i}`} />
+          ))}
+          <img src={event.logo} alt="" className="event-logo" />
+        </div>
+      )}
+
+      <h2 className="event-name">{event.name}</h2>
+      <p className="event-tagline">{event.tagline}</p>
+      {event.bio && <p className="event-bio">{event.bio}</p>}
+      <span className="event-cta-btn">{event.cta.label} →</span>
+    </>
   );
 }
 

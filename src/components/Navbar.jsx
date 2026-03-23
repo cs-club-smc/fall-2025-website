@@ -69,7 +69,7 @@ function Navbar() {
                     display: flex;
                     align-items: center;
                     width: 100%;
-                    padding: 24px 48px;
+                    padding: clamp(10px, 0.8vh, 14px) clamp(16px, 2vw, 32px);
                 }
 
                 .navbar-logo {
@@ -79,7 +79,7 @@ function Navbar() {
                 }
 
                 .navbar-logo-img {
-                    height: 80px;
+                    height: clamp(36px, 2.8vw, 48px);
                     width: auto;
                 }
 
@@ -87,9 +87,9 @@ function Navbar() {
                     display: flex;
                     flex: none;
                     justify-content: center;
-                    gap: 48px;
+                    gap: clamp(16px, 2vw, 32px);
                     font-family: 'Russo One', sans-serif;
-                    font-size: 24px;
+                    font-size: clamp(14px, 1.1vw, 18px);
                 }
 
                 .nav-link {
@@ -110,7 +110,7 @@ function Navbar() {
                     flex: 1;
                     display: flex;
                     justify-content: flex-end;
-                    margin-right: 24px;
+                    margin-right: clamp(0px, 1.5vw, 16px);
                 }
 
                 .navbar-hamburger {
@@ -163,26 +163,6 @@ function Navbar() {
                     padding: 12px 16px 4px 16px;
                 }
 
-                /* Tablet: 768px - 1024px */
-                @media (max-width: 1024px) {
-                    .navbar-inner {
-                        padding: 16px 24px;
-                    }
-
-                    .navbar-logo-img {
-                        height: 56px;
-                    }
-
-                    .navbar-links {
-                        gap: 24px;
-                        font-size: 18px;
-                    }
-
-                    .navbar-button {
-                        margin-right: 0;
-                    }
-                }
-
                 /* Mobile: < 768px */
                 @media (max-width: 768px) {
                     .navbar-inner {
@@ -190,7 +170,7 @@ function Navbar() {
                     }
 
                     .navbar-logo-img {
-                        height: 44px;
+                        height: 36px;
                     }
 
                     .navbar-links {
