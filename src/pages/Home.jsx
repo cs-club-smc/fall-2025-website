@@ -73,7 +73,7 @@ function Home() {
         <Footer />
       </div>
 
-      <style jsx>{`
+      <style>{`
         .home-container {
           position: relative;
           width: 100%;

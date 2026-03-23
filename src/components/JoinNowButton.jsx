@@ -22,7 +22,7 @@ function JoinNowButton() {
       {/* Button Text */}
       <span className="button-text">Join Now</span>
 
-      <style jsx>{`
+      <style>{`
         .join-now-button {
           display: flex;
           align-items: center;

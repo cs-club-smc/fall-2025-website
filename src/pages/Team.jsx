@@ -49,7 +49,7 @@ function Team() {
 
       <Footer />
 
-      <style jsx>{`
+      <style>{`
         .team-page {
           position: relative;
           width: 100%;

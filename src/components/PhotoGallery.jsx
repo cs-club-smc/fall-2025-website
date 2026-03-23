@@ -150,7 +150,7 @@ function PhotoGallery() {
         </AnimatePresence>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .photo-gallery {
           display: flex;
           flex-direction: column;

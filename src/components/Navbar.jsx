@@ -64,7 +64,7 @@ function Navbar() {
                 )}
             </AnimatePresence>
 
-            <style jsx>{`
+            <style>{`
                 .navbar-inner {
                     display: flex;
                     align-items: center;

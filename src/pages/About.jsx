@@ -59,7 +59,7 @@ function About() {
 
       <Footer />
 
-      <style jsx>{`
+      <style>{`
         .about-page {
           min-height: 100vh;
           display: flex;

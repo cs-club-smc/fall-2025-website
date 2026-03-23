@@ -45,7 +45,7 @@ function Footer() {
         </div>
       </motion.div>
 
-      <style jsx>{`
+      <style>{`
         .site-footer {
           position: relative;
           width: 100%;

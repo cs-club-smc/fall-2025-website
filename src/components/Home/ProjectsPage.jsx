@@ -8,7 +8,7 @@ function ProjectsPage() {
       <p className="projectsPage-body">Coming Soon!</p>
     </div>
 
-    <style jsx>{`
+    <style>{`
       .projectsPage-title {
           position: absolute;
           left: 50%;

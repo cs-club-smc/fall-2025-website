@@ -50,7 +50,7 @@ function DownArrow({ targetId }) {
         aria-hidden="true"
       />
 
-      <style jsx>{`
+      <style>{`
         .down-arrow-container {
           position: relative;
           width: var(--arrow-width);

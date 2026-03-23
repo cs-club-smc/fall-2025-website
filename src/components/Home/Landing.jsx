@@ -386,7 +386,7 @@ function Landing() {
         </motion.div>
       </motion.div>
 
-      <style jsx>{`
+      <style>{`
         .landing-container {
           position: relative;
           width: 100%;
