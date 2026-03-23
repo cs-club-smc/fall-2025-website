@@ -1,23 +1,23 @@
-import { SiDiscord } from 'react-icons/si';
+import { SiLinktree } from 'react-icons/si';
 
 /**
  * JoinNowButton Component
- * Discord button that links to the CS Club Discord server
+ * Linktree button that links to the CS Club Linktree
  * Glassmorphism design to match site aesthetic
  */
 function JoinNowButton() {
-  const DISCORD_INVITE_URL = "https://discord.gg/vWVBwsAqfJ";
+  const LINKTREE_URL = "https://linktr.ee/csclub.smc";
 
   return (
     <a
-      href={DISCORD_INVITE_URL}
+      href={LINKTREE_URL}
       target="_blank"
       rel="noopener noreferrer"
       className="join-now-button group"
-      aria-label="Join CS Club Discord Server"
+      aria-label="Visit CS Club Linktree"
     >
-      {/* Discord Icon */}
-      <SiDiscord className="discord-icon" />
+      {/* Linktree Icon */}
+      <SiLinktree className="linktree-icon" />
 
       {/* Button Text */}
       <span className="button-text">Join Now</span>
@@ -64,7 +64,7 @@ function JoinNowButton() {
           transform: translateY(0);
         }
 
-        .discord-icon {
+        .linktree-icon {
           width: 22px;
           height: 22px;
           color: #F1F5F9;
@@ -72,7 +72,7 @@ function JoinNowButton() {
           transition: color 0.3s ease;
         }
 
-        .join-now-button:hover .discord-icon {
+        .join-now-button:hover .linktree-icon {
           color: #66C48A;
         }
 
@@ -101,7 +101,7 @@ function JoinNowButton() {
             font-size: 16px;
           }
 
-          .discord-icon {
+          .linktree-icon {
             width: 20px;
             height: 20px;
           }
@@ -117,7 +117,7 @@ function JoinNowButton() {
             font-size: 14px;
           }
 
-          .discord-icon {
+          .linktree-icon {
             width: 18px;
             height: 18px;
           }
