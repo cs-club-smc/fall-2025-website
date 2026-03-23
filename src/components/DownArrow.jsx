@@ -86,20 +86,20 @@ function DownArrow({ targetId }) {
           pointer-events: none;
         }
 
-        /* Arrow Layer 2 (Background) - top: 999px in Figma */
+        /* Arrow Layer 2 (Background) */
         .arrow-layer-2 {
-          width: 114px;
-          height: 33px;
-          top: 9px;
+          width: clamp(60px, 5vw, 80px);
+          height: clamp(18px, 1.5vw, 24px);
+          top: clamp(5px, 0.5vw, 7px);
           left: 0;
         }
 
-        /* Arrow Layer 1 (Foreground) - top: 990px in Figma */
+        /* Arrow Layer 1 (Foreground) */
         .arrow-layer-1 {
-          width: 86.271px;
-          height: 25.052px;
+          width: clamp(45px, 3.8vw, 60px);
+          height: clamp(13px, 1.1vw, 18px);
           top: 0;
-          left: 14px;
+          left: clamp(7px, 0.6vw, 10px);
         }
 
         /* Bounce animation */
@@ -115,22 +115,11 @@ function DownArrow({ targetId }) {
           }
         }
 
-        /* Responsive adjustments */
+        /* Mobile adjustments */
         @media (max-width: 768px) {
           .down-arrow-container {
-            width: 80px;
-            height: 24px;
-          }
-
-          .arrow-layer-2 {
-            width: 80px;
-            height: 24px;
-          }
-
-          .arrow-layer-1 {
             width: 60px;
             height: 18px;
-            left: 10px;
           }
         }
       `}</style>

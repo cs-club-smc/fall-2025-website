@@ -422,7 +422,7 @@ function Landing() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: clamp(2rem, 5vh, 4rem) clamp(1rem, 5vw, 3rem);
+          padding: clamp(5rem, 8vh, 6rem) clamp(1rem, 5vw, 3rem) clamp(2rem, 5vh, 4rem);
           box-sizing: border-box;
         }
 
@@ -430,7 +430,7 @@ function Landing() {
         .hero-title {
           position: relative;
           font-family: 'Russo One', sans-serif;
-          font-size: clamp(48px, 10vw, 180px);
+          font-size: clamp(56px, 11vw, 180px);
           font-weight: 400;
           line-height: 0.9;
           text-align: center;
@@ -573,8 +573,9 @@ function Landing() {
           flex-direction: column;
           align-items: center;
           text-align: center;
-          padding: clamp(16px, 2vh, 24px) clamp(20px, 4vw, 40px);
-          min-height: clamp(180px, 22vh, 240px);
+          padding: clamp(16px, 2.5vh, 24px) clamp(20px, 4vw, 40px);
+          height: clamp(220px, 28vh, 280px);
+          overflow: hidden;
           border: 1px solid rgba(var(--event-accent-rgb), 0.25);
           border-top: 3px solid var(--event-accent);
           border-radius: 16px;
@@ -836,10 +837,8 @@ function Landing() {
 
         /* Arrow */
         .arrow-wrapper {
-          position: absolute;
-          left: 50%;
-          bottom: clamp(20px, 4vh, 48px);
-          transform: translateX(-50%);
+          margin-top: auto;
+          padding-bottom: clamp(10px, 2vh, 20px);
         }
 
         /* Responsive */
@@ -852,7 +851,8 @@ function Landing() {
 
           .event-slide {
             padding: 16px 20px;
-            min-height: 160px;
+            height: 220px;
+            overflow: hidden;
           }
 
           .slide-dot {
