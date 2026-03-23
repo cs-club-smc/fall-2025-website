@@ -10,8 +10,8 @@ function About() {
           {/* Text column */}
           <div className="text-column">
             <div className="about-text">
-              <section>
-                <h2>Description:</h2>
+              <section className="card">
+                <h2>Description</h2>
                 <p>
                   Our club brings together students who are passionate about
                   computer science and technology. We organize workshops,
@@ -20,8 +20,8 @@ function About() {
                 </p>
               </section>
 
-              <section>
-                <h2>Mission Statement:</h2>
+              <section className="card">
+                <h2>Mission Statement</h2>
                 <p>
                   To create a supportive and inclusive space where students can
                   grow their technical and professional skills while building
@@ -29,18 +29,18 @@ function About() {
                 </p>
               </section>
 
-              <section>
-                <h2>Goals:</h2>
-                <p>
-                  – Host coding workshops and guest speaker events. <br />
-                  – Encourage collaboration on open-source or student projects. <br />
-                  – Help members prepare for internships and tech interviews. <br />
-                  – Promote diversity and accessibility in STEM fields.
-                </p>
+              <section className="card">
+                <h2>Goals</h2>
+                <ul className="goals-list">
+                  <li>Host coding workshops and guest speaker events.</li>
+                  <li>Encourage collaboration on open-source or student projects.</li>
+                  <li>Help members prepare for internships and tech interviews.</li>
+                  <li>Promote diversity and accessibility in STEM fields.</li>
+                </ul>
               </section>
 
-              <section>
-                <h2>Advisors:</h2>
+              <section className="card">
+                <h2>Advisors</h2>
                 <p>Professors Koda Kol and Nathan Greenfield</p>
               </section>
             </div>
@@ -55,7 +55,7 @@ function About() {
 
       {/* Footer */}
       <footer className="page-footer">
-        <p className="footer-meetings">Weekly Meetings on Wednesday @ 11:00 AM - 12:30 PM</p>
+        <p className="footer-meetings">Weekly Meetings on Thursday @ 11:00 AM - 12:30 PM | MSB 205</p>
         <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405</p>
       </footer>
 
@@ -124,6 +124,40 @@ function About() {
           margin: 0;
         }
 
+        .about-text .card {
+          background: rgba(255, 255, 255, 0.05);
+          border-left: 3px solid var(--color-teal-primary, #0fb588);
+          border-radius: 8px;
+          padding: clamp(16px, 2vw, 24px) clamp(20px, 2.5vw, 32px);
+        }
+
+        .goals-list {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .goals-list li {
+          position: relative;
+          padding-left: 20px;
+          margin-bottom: 8px;
+        }
+
+        .goals-list li:last-child {
+          margin-bottom: 0;
+        }
+
+        .goals-list li::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 10px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--color-teal-primary, #0fb588);
+        }
+
         /* Tablet and below */
         @media (max-width: 1024px) {
           .about-body {
@@ -153,6 +187,10 @@ function About() {
             font-size: clamp(16px, 3.5vw, 24px);
             margin-bottom: 10px;
           }
+
+          .about-text .card {
+            padding: 16px 20px;
+          }
         }
 
         /* Mobile */
@@ -172,6 +210,20 @@ function About() {
 
           .about-text section h2 {
             font-size: 18px;
+          }
+
+          .about-text .card {
+            padding: 14px 16px;
+          }
+
+          .goals-list li {
+            padding-left: 16px;
+          }
+
+          .goals-list li::before {
+            width: 5px;
+            height: 5px;
+            top: 9px;
           }
         }
 

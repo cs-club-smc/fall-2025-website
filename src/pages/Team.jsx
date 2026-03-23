@@ -56,7 +56,7 @@ function Team() {
 
       {/* Footer */}
       <footer className="page-footer">
-        <p className="footer-meetings">Weekly Meetings on Wednesday @ 11:00 AM - 12:30 PM</p>
+        <p className="footer-meetings">Weekly Meetings on Thursday @ 11:00 AM - 12:30 PM | MSB 205</p>
         <p className="footer-location">1900 Pico Blvd, Santa Monica, CA 90405</p>
       </footer>
 

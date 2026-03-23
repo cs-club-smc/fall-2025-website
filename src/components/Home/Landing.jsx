@@ -148,7 +148,7 @@ function Landing() {
           animate={{ opacity: isLoaded ? 1 : 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
         >
-          <DownArrow targetId="announcements" />
+          <DownArrow targetId="instagram" />
         </motion.div>
       </motion.div>
 
