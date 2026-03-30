@@ -131,6 +131,42 @@ const TYPE_ICONS = {
   speaker: <HiOutlineMicrophone />,
 };
 
+// Check if an event's date has already passed
+function isEventPassed(dateStr) {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+
+  // Date range like "May 9–10" or "May 9-10" — use the end date
+  const rangeMatch = dateStr.match(/^(\w+)\s+\d+[\u2013-](\d+)$/);
+  if (rangeMatch) {
+    const endDate = new Date(`${rangeMatch[1]} ${rangeMatch[2]}, ${currentYear}`);
+    endDate.setHours(23, 59, 59, 999);
+    return !isNaN(endDate.getTime()) && now > endDate;
+  }
+
+  // Specific date like "March 26" — assumes current year
+  const specificMatch = dateStr.match(/^(\w+)\s+(\d{1,2})$/);
+  if (specificMatch) {
+    const eventDate = new Date(`${specificMatch[1]} ${specificMatch[2]}, ${currentYear}`);
+    eventDate.setHours(23, 59, 59, 999);
+    return !isNaN(eventDate.getTime()) && now > eventDate;
+  }
+
+  // Month + year only like "May 2026" — no specific date, only mark as
+  // passed after the entire month has ended
+  const monthYearMatch = dateStr.match(/^(\w+)\s+(\d{4})$/);
+  if (monthYearMatch) {
+    const monthDate = new Date(`${monthYearMatch[1]} 1, ${monthYearMatch[2]}`);
+    if (isNaN(monthDate.getTime())) return false;
+    const lastDay = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0);
+    lastDay.setHours(23, 59, 59, 999);
+    return now > lastDay;
+  }
+
+  // Unrecognizable format — don't mark as passed
+  return false;
+}
+
 const slideVariants = {
   enter: (direction) => ({
     x: direction > 0 ? 80 : -80,
@@ -214,6 +250,7 @@ function Landing() {
   ];
 
   const event = EVENTS[currentSlide];
+  const isPast = isEventPassed(event.date);
   const accentColor = TYPE_COLORS[event.type];
   const accentRgb = TYPE_COLORS_RGB[event.type];
 
@@ -277,7 +314,7 @@ function Landing() {
                   '--event-accent-rgb': accentRgb,
                 }}
               >
-                <SlideContent event={event} />
+                <SlideContent event={event} isPast={isPast} />
               </motion.a>
             ) : (
               <motion.div
@@ -297,7 +334,7 @@ function Landing() {
                   '--event-accent-rgb': accentRgb,
                 }}
               >
-                <SlideContent event={event} />
+                <SlideContent event={event} isPast={isPast} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -707,6 +744,21 @@ function Landing() {
           opacity: 1;
         }
 
+        .event-ended-badge {
+          display: inline-flex;
+          align-items: center;
+          margin-left: 8px;
+          padding: 2px 8px;
+          border-radius: 999px;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          background: rgba(255, 255, 255, 0.08);
+          color: rgba(241, 245, 249, 0.45);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          vertical-align: middle;
+        }
+
         /* Slideshow Controls */
         .slideshow-controls {
           display: flex;
@@ -910,7 +962,7 @@ function Landing() {
   );
 }
 
-function SlideContent({ event }) {
+function SlideContent({ event, isPast }) {
   return (
     <>
       <div className="slide-header">
@@ -921,6 +973,7 @@ function SlideContent({ event }) {
         <span className="event-date">
           {event.date}
           {event.time && ` · ${event.time}`}
+          {isPast && <span className="event-ended-badge">ENDED</span>}
         </span>
       </div>
 
